@@ -117,7 +117,7 @@
                         android:layout_gravity="center"
                         android:layout_marginHorizontal="15dp"
                         android:layout_marginVertical="33dp"
-                        android:text="요"
+                        android:text="요리"
                         android:textColor="@color/white" />
 
                 </androidx.cardview.widget.CardView>
