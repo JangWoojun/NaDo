@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.woojun.nado.ToolTip.createBalloon
 import com.woojun.nado.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -24,6 +25,17 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.infoButton.setOnClickListener {
+            val balloon = createBalloon(
+                requireContext(),
+                view,
+                viewLifecycleOwner,
+                "평생교육강의를 제공하고 있습니다.\n" +
+                    "카테고리별 강의를 둘러보세요."
+            )
+            balloon.showAlignBottom(it)
+        }
     }
 
     override fun onDestroyView() {
