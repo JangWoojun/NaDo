@@ -10,5 +10,7 @@ class WebViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityWebViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.webView.loadUrl(intent.getStringExtra("url")!!)
     }
 }
