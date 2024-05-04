@@ -6,4 +6,20 @@
     </style>
 
     <style name="Theme.NaDo" parent="Base.Theme.NaDo" />
+
+    <style name="title_text">
+        <item name="android:textSize">24sp</item>
+        <item name="fontFamily">@font/spoqahansansneo_bold</item>
+    </style>
+
+    <style name="sub_title_text">
+        <item name="android:textSize">22sp</item>
+        <item name="fontFamily">@font/spoqahansansneo_bold</item>
+    </style>
+
+    <style name="medium_text">
+        <item name="android:textSize">18sp</item>
+        <item name="fontFamily">@font/spoqahansansneo_bold</item>
+    </style>
+
 </resources>
