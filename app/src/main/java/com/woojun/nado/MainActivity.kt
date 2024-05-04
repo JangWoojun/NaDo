@@ -36,6 +36,32 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun moveNavigation(index: Int) {
+        val navController = findNavController(R.id.nav_host_fragment)
+        when (index) {
+            0 -> {
+                resetNavigation()
+                binding.homeIcon.setImageResource(R.drawable.select_home_icon)
+                navController.navigate(R.id.home)
+            }
+            1 -> {
+                resetNavigation()
+                binding.sarangbangIcon.setImageResource(R.drawable.select_sarangbang_icon)
+                navController.navigate(R.id.sarangbang)
+            }
+            2 -> {
+                resetNavigation()
+                binding.chatIcon.setImageResource(R.drawable.select_chat_icon)
+                navController.navigate(R.id.chat)
+            }
+            3 -> {
+                resetNavigation()
+                binding.settingIcon.setImageResource(R.drawable.select_setting_icon)
+                navController.navigate(R.id.setting)
+            }
+        }
+    }
+
     private fun resetNavigation() {
         binding.homeIcon.setImageResource(R.drawable.home_icon)
         binding.sarangbangIcon.setImageResource(R.drawable.sarangbang_icon)
