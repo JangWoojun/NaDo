@@ -73,6 +73,10 @@ class HomeFragment : Fragment() {
             )
         }
 
+
+        binding.updateList.adapter = UpdateAdapter(mutableListOf())
+        binding.updateList.layoutManager = LinearLayoutManager(requireContext())
+
     }
 
     override fun onDestroyView() {
