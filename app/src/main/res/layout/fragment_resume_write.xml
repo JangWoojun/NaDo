@@ -1,9 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.resume.ResumeWriteFragment">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:background="@color/primary"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                style="@style/title_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="자기소개서 작성"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="28dp"
+            android:id="@+id/name_text"
+            style="@style/title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="홍길동"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+        <Button
+            android:id="@+id/name_change_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="22dp"
+            android:backgroundTint="@color/primary"
+            android:fontFamily="@font/spoqahansansneo_bold"
+            android:paddingHorizontal="13dp"
+            android:text="이름 변경"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/name_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/name_text" />
+
+        <TextView
+            android:text="Do!"
+            android:layout_marginStart="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/spoqahansansneo_medium"
+            android:textColor="@color/gray_4"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@+id/materialCardView"
+            app:layout_constraintStart_toStartOf="@+id/materialCardView" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="24dp"
+            app:cardBackgroundColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/name_change_button"
+            app:strokeColor="@color/gray_3"
+            tools:layout_editor_absoluteX="16dp">
+
+            <EditText
+                android:background="@null"
+                android:id="@+id/content_input"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <ImageView
+            android:layout_marginTop="30dp"
+            android:id="@+id/mic_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/mic_icon"
+            app:layout_constraintBottom_toTopOf="@+id/textView11"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
+
+        <TextView
+            android:layout_marginBottom="40dp"
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/spoqahansansneo_medium"
+            android:text="음성 답변을 원할 때 ? 클릭!"
+            android:textColor="@color/gray_4"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+            app:layout_constraintEnd_toEndOf="@+id/mic_button"
+            app:layout_constraintStart_toStartOf="@+id/mic_button" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="14dp"
+            android:layout_marginBottom="16.5dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_editor_absoluteX="14dp">
+
+            <LinearLayout
+                android:id="@+id/button1"
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                android:layout_marginEnd="-1dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_background1"
+                android:gravity="center">
+
+                <TextView
+                    style="@style/medium_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="이전"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/button2"
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                android:layout_marginStart="-1dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_background2"
+                android:gravity="center"
+                app:strokeColor="@color/primary">
+
+                <TextView
+                    style="@style/medium_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="완료"
+                    android:textColor="@color/black" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
