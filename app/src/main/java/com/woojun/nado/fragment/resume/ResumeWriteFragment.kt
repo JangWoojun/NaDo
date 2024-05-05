@@ -5,9 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.woojun.nado.R
 import com.woojun.nado.databinding.FragmentResumeWriteBinding
-import com.woojun.nado.databinding.FragmentSettingBinding
 
 class ResumeWriteFragment : Fragment() {
     private var _binding: FragmentResumeWriteBinding? = null
@@ -27,6 +27,19 @@ class ResumeWriteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val name = arguments?.getString("name")
+
+
+
+        binding.button1.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
+        binding.button2.setOnClickListener {
+            findNavController().navigate(R.id.resumeListFragment)
+        }
+
+        binding.nameText.text = name
     }
 
     override fun onDestroyView() {
