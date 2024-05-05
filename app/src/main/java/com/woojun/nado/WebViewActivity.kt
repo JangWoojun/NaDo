@@ -12,5 +12,6 @@ class WebViewActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.webView.loadUrl(intent.getStringExtra("url")!!)
+        binding.webView.settings.domStorageEnabled = true
     }
 }
