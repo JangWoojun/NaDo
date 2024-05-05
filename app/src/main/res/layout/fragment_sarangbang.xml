@@ -65,13 +65,26 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
 
-        <View
-            android:id="@+id/view"
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager"
             android:layout_width="match_parent"
-            android:layout_height="263dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/gray_4"
+            android:layout_height="0dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:layout_marginTop="16dp"
             app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+        <com.woojun.nado.CircleIndicator
+            android:id="@+id/indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_pager" />
+
+
 
         <HorizontalScrollView
             android:id="@+id/horizontalScrollView"
@@ -79,7 +92,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:scrollbars="none"
-            app:layout_constraintTop_toBottomOf="@+id/view">
+            app:layout_constraintTop_toBottomOf="@+id/indicator">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -90,9 +103,9 @@
                 android:paddingHorizontal="13dp">
 
                 <com.google.android.material.card.MaterialCardView
+                    android:layout_marginEnd="8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
                     app:cardBackgroundColor="@color/primary"
                     app:cardCornerRadius="100dp"
                     app:strokeColor="@color/primary">
@@ -218,7 +231,6 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
                     app:cardBackgroundColor="@color/primary"
                     app:cardCornerRadius="100dp"
                     app:strokeColor="@color/primary">
@@ -257,6 +269,7 @@
             android:layout_marginStart="25dp">
 
             <TextView
+                android:id="@+id/order_latest_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="22dp"
@@ -267,6 +280,7 @@
                 android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/order_popularity_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="22dp"
@@ -277,6 +291,7 @@
                 android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/order_name_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="22dp"
@@ -314,6 +329,7 @@
             app:layout_constraintTop_toBottomOf="@+id/lecture_list">
 
             <LinearLayout
+                android:id="@+id/left_button"
                 android:paddingHorizontal="10dp"
                 android:gravity="center"
                 android:layout_width="wrap_content"
@@ -327,6 +343,7 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/page_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/spoqahansansneo_bold"
@@ -335,6 +352,7 @@
                 android:textSize="18sp" />
 
             <LinearLayout
+                android:id="@+id/right_button"
                 android:paddingHorizontal="10dp"
                 android:gravity="center"
                 android:layout_width="wrap_content"
