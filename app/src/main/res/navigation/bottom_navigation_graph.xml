@@ -6,9 +6,9 @@
     app:startDestination="@id/home">
     <fragment
         android:id="@+id/support"
-        android:name="com.woojun.nado.fragment.ChatFragment"
+        android:name="com.woojun.nado.fragment.SupportFragment"
         android:label="fragment_chat"
-        tools:layout="@layout/fragment_chat" />
+        tools:layout="@layout/fragment_support" />
     <fragment
         android:id="@+id/home"
         android:name="com.woojun.nado.fragment.HomeFragment"
@@ -16,14 +16,14 @@
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/study"
-        android:name="com.woojun.nado.fragment.SarangbangFragment"
+        android:name="com.woojun.nado.fragment.StudyFragment"
         android:label="fragment_sarangbang"
-        tools:layout="@layout/fragment_sarangbang" />
+        tools:layout="@layout/fragment_study" />
     <fragment
         android:id="@+id/community"
-        android:name="com.woojun.nado.fragment.SettingFragment"
+        android:name="com.woojun.nado.fragment.CommunityFragment"
         android:label="fragment_setting"
-        tools:layout="@layout/fragment_setting" />
+        tools:layout="@layout/fragment_community" />
     <fragment
         android:id="@+id/aiWriteFragment"
         android:name="com.woojun.nado.fragment.resume.AiWriteFragment"

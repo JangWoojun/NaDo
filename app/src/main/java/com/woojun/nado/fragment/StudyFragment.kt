@@ -22,12 +22,12 @@ import com.woojun.nado.ToolTip
 import com.woojun.nado.Utils.dpToPx
 import com.woojun.nado.ViewPagerAdapter
 import com.woojun.nado.database.ViewModel
-import com.woojun.nado.databinding.FragmentSarangbangBinding
+import com.woojun.nado.databinding.FragmentStudyBinding
 import kotlin.math.ceil
 
 
-class SarangbangFragment : Fragment() {
-    private var _binding: FragmentSarangbangBinding? = null
+class StudyFragment : Fragment() {
+    private var _binding: FragmentStudyBinding? = null
     private val binding get() = _binding!!
 
     private val viewPagerHandler = Handler()
@@ -52,7 +52,7 @@ class SarangbangFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSarangbangBinding.inflate(inflater, container, false)
+        _binding = FragmentStudyBinding.inflate(inflater, container, false)
         return binding.root
     }
 

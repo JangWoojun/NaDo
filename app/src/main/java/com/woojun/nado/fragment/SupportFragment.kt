@@ -12,13 +12,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import com.woojun.nado.R
 import com.woojun.nado.ToolTip
-import com.woojun.nado.databinding.FragmentChatBinding
+import com.woojun.nado.databinding.FragmentSupportBinding
 
-class ChatFragment : Fragment() {
-    private var _binding: FragmentChatBinding? = null
+class SupportFragment : Fragment() {
+    private var _binding: FragmentSupportBinding? = null
     private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +27,7 @@ class ChatFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentChatBinding.inflate(inflater, container, false)
+        _binding = FragmentSupportBinding.inflate(inflater, container, false)
         return binding.root
     }
 
