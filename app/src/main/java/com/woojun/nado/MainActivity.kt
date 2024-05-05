@@ -33,14 +33,14 @@ class MainActivity : AppCompatActivity() {
         binding.home.setOnClickListener {
             navController.navigate(R.id.home)
         }
-        binding.sarangbang.setOnClickListener {
-            navController.navigate(R.id.sarangbang)
+        binding.study.setOnClickListener {
+            navController.navigate(R.id.study)
         }
-        binding.chat.setOnClickListener {
-            navController.navigate(R.id.chat)
+        binding.support.setOnClickListener {
+            navController.navigate(R.id.support)
         }
-        binding.setting.setOnClickListener {
-            navController.navigate(R.id.setting)
+        binding.community.setOnClickListener {
+            navController.navigate(R.id.community)
         }
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
@@ -49,14 +49,14 @@ class MainActivity : AppCompatActivity() {
                 R.id.home -> {
                     binding.homeIcon.setImageResource(R.drawable.select_home_icon)
                 }
-                R.id.sarangbang -> {
-                    binding.sarangbangIcon.setImageResource(R.drawable.select_sarangbang_icon)
+                R.id.study -> {
+                    binding.studyIcon.setImageResource(R.drawable.select_study_icon)
                 }
-                R.id.chat -> {
-                    binding.chatIcon.setImageResource(R.drawable.select_chat_icon)
+                R.id.support -> {
+                    binding.supportIcon.setImageResource(R.drawable.select_support_icon)
                 }
-                R.id.setting -> {
-                    binding.settingIcon.setImageResource(R.drawable.select_setting_icon)
+                R.id.community -> {
+                    binding.communityIcon.setImageResource(R.drawable.select_community_icon)
                 }
             }
         }
@@ -69,9 +69,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun resetNavigation() {
         binding.homeIcon.setImageResource(R.drawable.home_icon)
-        binding.sarangbangIcon.setImageResource(R.drawable.sarangbang_icon)
-        binding.chatIcon.setImageResource(R.drawable.chat_icon)
-        binding.settingIcon.setImageResource(R.drawable.setting_icon)
+        binding.studyIcon.setImageResource(R.drawable.study_icon)
+        binding.supportIcon.setImageResource(R.drawable.support_icon)
+        binding.communityIcon.setImageResource(R.drawable.community_icon)
     }
 
 }

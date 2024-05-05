@@ -50,15 +50,15 @@ class HomeFragment : Fragment() {
         }
 
         binding.studyButton.setOnClickListener {
-            findNavController().navigate(R.id.sarangbang)
+            findNavController().navigate(R.id.study)
         }
 
         binding.supportButton.setOnClickListener {
-            findNavController().navigate(R.id.chat)
+            findNavController().navigate(R.id.support)
         }
 
         binding.communityButton.setOnClickListener {
-            findNavController().navigate(R.id.setting)
+            findNavController().navigate(R.id.community)
         }
 
 

@@ -51,45 +51,45 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/sarangbang"
+            android:id="@+id/study"
             android:gravity="center"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/sarangbang_icon"
-                android:src="@drawable/sarangbang_icon"
+                android:id="@+id/study_icon"
+                android:src="@drawable/study_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/chat"
+            android:id="@+id/support"
             android:gravity="center"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/chat_icon"
-                android:src="@drawable/chat_icon"
+                android:id="@+id/support_icon"
+                android:src="@drawable/support_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/setting"
+            android:id="@+id/community"
             android:gravity="center"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/setting_icon"
-                android:src="@drawable/setting_icon"
+                android:id="@+id/community_icon"
+                android:src="@drawable/community_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
