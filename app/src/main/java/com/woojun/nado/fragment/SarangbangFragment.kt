@@ -160,6 +160,17 @@ class SarangbangFragment : Fragment() {
                 if (lectureList.size != 0) {
                     binding.pageText.text = "${pageIndex + 1}/${pageEndIndex + 1} 페이지"
                     binding.lectureList.adapter = LectureAdapter(lectureList[pageIndex].toMutableList())
+
+                    binding.pageText.apply {
+                        val spannableString = SpannableString(this.text)
+                        spannableString.setSpan(
+                            ForegroundColorSpan(Color.parseColor("#FF5656")),
+                            0,
+                            (pageIndex + 1).toString().length,
+                            SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE
+                        )
+                        this.text = spannableString
+                    }
                 }
             }
 
@@ -183,6 +194,17 @@ class SarangbangFragment : Fragment() {
                 if (lectureList.size != 0) {
                     binding.pageText.text = "${pageIndex + 1}/${pageEndIndex + 1} 페이지"
                     binding.lectureList.adapter = LectureAdapter(lectureList[pageIndex].toMutableList())
+
+                    binding.pageText.apply {
+                        val spannableString = SpannableString(this.text)
+                        spannableString.setSpan(
+                            ForegroundColorSpan(Color.parseColor("#FF5656")),
+                            0,
+                            (pageIndex + 1).toString().length,
+                            SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE
+                        )
+                        this.text = spannableString
+                    }
                 }
             }
 
@@ -206,6 +228,17 @@ class SarangbangFragment : Fragment() {
                 if (lectureList.size != 0) {
                     binding.pageText.text = "${pageIndex + 1}/${pageEndIndex + 1} 페이지"
                     binding.lectureList.adapter = LectureAdapter(lectureList[pageIndex].toMutableList())
+
+                    binding.pageText.apply {
+                        val spannableString = SpannableString(this.text)
+                        spannableString.setSpan(
+                            ForegroundColorSpan(Color.parseColor("#FF5656")),
+                            0,
+                            (pageIndex + 1).toString().length,
+                            SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE
+                        )
+                        this.text = spannableString
+                    }
                 }
             }
 
@@ -227,6 +260,17 @@ class SarangbangFragment : Fragment() {
                     if (lectureList.size != 0) {
                         binding.pageText.text = "${pageIndex + 1}/${pageEndIndex + 1} 페이지"
                         binding.lectureList.adapter = LectureAdapter(lectureList[pageIndex].toMutableList())
+
+                        binding.pageText.apply {
+                            val spannableString = SpannableString(this.text)
+                            spannableString.setSpan(
+                                ForegroundColorSpan(Color.parseColor("#FF5656")),
+                                0,
+                                (pageIndex + 1).toString().length,
+                                SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE
+                            )
+                            this.text = spannableString
+                        }
                     }
 
                     card.setCardBackgroundColor(Color.parseColor("#FF5656"))
