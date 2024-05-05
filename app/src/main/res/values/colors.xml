@@ -3,6 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray_2">#DADADA</color>
+    <color name="gray_3">#B5B5B5</color>
     <color name="gray_4">#727272</color>
     <color name="primary">#FF5656</color>
     <color name="balloon_background">#E63A3A3A</color>
