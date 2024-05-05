@@ -2,6 +2,7 @@ package com.woojun.nado
 
 import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
@@ -24,16 +25,16 @@ class UpdateAdapter(private val lectureList: MutableList<Lecture>): RecyclerView
     }
 
     override fun getItemCount(): Int {
-        return lectureList.size
+        return 3
     }
 
     override fun onBindViewHolder(holder: UpdateViewHolder, position: Int) {
-        holder.bind(lectureList[position])
+        holder.bind(lectureList[position], position)
     }
 
     class UpdateViewHolder(private val binding: UpdateItemBinding):
         ViewHolder(binding.root) {
-        fun bind(lecture: Lecture) {
+        fun bind(lecture: Lecture, position: Int) {
             if (binding.root.context != null) {
                 Glide.with(binding.root.context)
                     .load(lecture.image)
@@ -43,6 +44,9 @@ class UpdateAdapter(private val lectureList: MutableList<Lecture>): RecyclerView
             }
             binding.titleText.text = lecture.titleText
             binding.subText.text = lecture.subText
+            if (position == 2) {
+                binding.line.visibility = View.INVISIBLE
+            }
         }
     }
 
