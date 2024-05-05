@@ -3,19 +3,22 @@ package com.woojun.nado.fragment
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
+import com.woojun.nado.Lecture
 import com.woojun.nado.R
 import com.woojun.nado.ToolTip
-import com.woojun.nado.UpdateAdapter
 import com.woojun.nado.Utils.dpToPx
 import com.woojun.nado.ViewPagerAdapter
 import com.woojun.nado.database.ViewModel
@@ -31,6 +34,13 @@ class SarangbangFragment : Fragment() {
     private var handlerRunnable = Runnable { binding.viewPager.currentItem = binding.viewPager.currentItem + 1 }
 
     private lateinit var viewModel: ViewModel
+
+    private var pageIndex = 0
+    private var pageEndIndex = 0
+
+    private var buttonIndex = 0
+
+    private lateinit var lectureList: MutableList<List<Lecture>>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,12 +58,6 @@ class SarangbangFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(requireActivity())[ViewModel::class.java]
-        viewModel.getOnlineCourseList().observe(viewLifecycleOwner) { apiData ->
-            binding.lectureList.adapter = UpdateAdapter(apiData)
-            binding.lectureList.layoutManager = LinearLayoutManager(requireContext())
-        }
-
         binding.infoButton.setOnClickListener {
             val balloon = ToolTip.createBalloon(
                 requireContext(),
@@ -64,7 +68,10 @@ class SarangbangFragment : Fragment() {
             )
             balloon.showAlignBottom(it)
         }
-        viewModel.getOnlineCourseList().observe(viewLifecycleOwner) { apiData ->
+
+        viewModel = ViewModelProvider(requireActivity())[ViewModel::class.java]
+
+        viewModel.getRecommendationOnlineCourseList().observe(viewLifecycleOwner) { apiData ->
             val list = apiData.subList(0, 4)
             binding.viewPager.apply {
                 this.adapter = ViewPagerAdapter(list)
@@ -94,30 +101,149 @@ class SarangbangFragment : Fragment() {
                 })
 
                 setCurrentItem(Int.MAX_VALUE / 2 - ceil(list.size.toDouble() / 2).toInt() - 1, false)
-
+                binding.indicator.createDotPanel(list.size, R.drawable.indicator_dot_off, R.drawable.indicator_dot_on, 0)
             }
-            binding.indicator.createDotPanel(list.size, R.drawable.indicator_dot_off, R.drawable.indicator_dot_on, 0)
+        }
 
-            binding.lectureList.adapter = LectureAdapter(list)
+        viewModel.getOnlineCourseList().observe(viewLifecycleOwner) { apiData ->
+            lectureList = mutableListOf()
+
+            if (apiData.size != 0) {
+                apiData.chunked(5).forEach {
+                    lectureList.add(it)
+                }
+            }
+
+            pageEndIndex = lectureList.size - 1
+            pageIndex = 0
+
+            if (lectureList.size != 0) {
+                binding.lectureList.adapter = LectureAdapter(lectureList[pageIndex].toMutableList())
+
+                binding.pageText.text = "${pageIndex + 1}/${pageEndIndex + 1} 페이지"
+                binding.pageText.apply {
+                    val spannableString = SpannableString(this.text)
+                    spannableString.setSpan(
+                        ForegroundColorSpan(Color.parseColor("#FF5656")),
+                        0,
+                        1,
+                        SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                    this.text = spannableString
+                }
+            }
+
+            binding.lectureList.adapter = LectureAdapter(apiData.subList(0, 4))
             binding.lectureList.layoutManager = LinearLayoutManager(requireContext())
+
+            binding.orderLatestButton.setOnClickListener {
+                lectureList = mutableListOf()
+
+                resetText()
+                it as TextView
+                it.setTextColor(Color.parseColor("#FF5656"))
+
+                selectOrder(0, selectCategory(buttonIndex, apiData))
+                    .chunked(5).forEach {
+                    lectureList.add(it)
+                }
+
+                pageEndIndex = lectureList.size - 1
+                pageIndex = 0
+
+                if (lectureList.size != 0) {
+                    binding.pageText.text = "${pageIndex + 1}/${pageEndIndex + 1} 페이지"
+                    binding.lectureList.adapter = LectureAdapter(lectureList[pageIndex].toMutableList())
+                }
+            }
+
+            binding.orderPopularityButton.setOnClickListener {
+                lectureList = mutableListOf()
+
+                resetText()
+                it as TextView
+                it.setTextColor(Color.parseColor("#FF5656"))
+
+                selectOrder(1, selectCategory(buttonIndex, apiData))
+                    .chunked(5).forEach {
+                        lectureList.add(it)
+                    }
+
+                pageEndIndex = lectureList.size - 1
+                pageIndex = 0
+
+                if (lectureList.size != 0) {
+                    binding.pageText.text = "${pageIndex + 1}/${pageEndIndex + 1} 페이지"
+                    binding.lectureList.adapter = LectureAdapter(lectureList[pageIndex].toMutableList())
+                }
+            }
+
+            binding.orderNameButton.setOnClickListener {
+                lectureList = mutableListOf()
+
+                resetText()
+                it as TextView
+                it.setTextColor(Color.parseColor("#FF5656"))
+
+                selectOrder(2, selectCategory(buttonIndex, apiData))
+                    .chunked(5).forEach {
+                        lectureList.add(it)
+                    }
+
+                pageEndIndex = lectureList.size - 1
+                pageIndex = 0
+
+                if (lectureList.size != 0) {
+                    binding.pageText.text = "${pageIndex + 1}/${pageEndIndex + 1} 페이지"
+                    binding.lectureList.adapter = LectureAdapter(lectureList[pageIndex].toMutableList())
+                }
+            }
+
         }
 
+        binding.leftButton.setOnClickListener {
+            if (pageIndex - 1 == -1) {
+                Toast.makeText(requireContext(), "첫 페이지입니다", Toast.LENGTH_SHORT).show()
+            } else {
+                pageIndex -= 1
+                binding.lectureList.adapter = LectureAdapter(lectureList[pageIndex].toMutableList())
+                binding.pageText.text = "${pageIndex + 1}/${pageEndIndex + 1} 페이지"
 
-        binding.orderLatestButton.setOnClickListener {
-            resetText()
-            it as TextView
-            it.setTextColor(Color.parseColor("#FF5656"))
+                binding.pageText.apply {
+                    val spannableString = SpannableString(this.text)
+                    spannableString.setSpan(
+                        ForegroundColorSpan(Color.parseColor("#FF5656")),
+                        0,
+                        (pageIndex + 1).toString().length,
+                        SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                    this.text = spannableString
+                }
+            }
         }
-        binding.orderPopularityButton.setOnClickListener {
-            resetText()
-            it as TextView
-            it.setTextColor(Color.parseColor("#FF5656"))
+
+        binding.rightButton.setOnClickListener {
+            if (pageIndex + 1 > pageEndIndex) {
+                Toast.makeText(requireContext(), "마지막 페이지입니다", Toast.LENGTH_SHORT).show()
+            } else {
+                pageIndex += 1
+                binding.lectureList.adapter =
+                    LectureAdapter(lectureList[pageIndex].toMutableList())
+                binding.pageText.text = "${pageIndex + 1}/${pageEndIndex + 1} 페이지"
+
+                binding.pageText.apply {
+                    val spannableString = SpannableString(this.text)
+                    spannableString.setSpan(
+                        ForegroundColorSpan(Color.parseColor("#FF5656")),
+                        0,
+                        (pageIndex + 1).toString().length,
+                        SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                    this.text = spannableString
+                }
+            }
         }
-        binding.orderNameButton.setOnClickListener {
-            resetText()
-            it as TextView
-            it.setTextColor(Color.parseColor("#FF5656"))
-        }
+
     }
 
     private fun resetText() {
@@ -139,6 +265,38 @@ class SarangbangFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun selectCategory(buttonIndex: Int, apiData: MutableList<Lecture>): MutableList<Lecture> {
+        val list = when (buttonIndex) {
+            0 -> {
+                apiData
+            }
+            else -> {
+                apiData
+            }
+        }
+
+        return list
+    }
+
+    private fun selectOrder(buttonIndex: Int, apiData: MutableList<Lecture>): MutableList<Lecture> {
+        val list = when (buttonIndex) {
+            0 -> {
+                apiData
+            }
+            1 -> {
+                apiData.sortedBy { it.isNotPopularity }.toMutableList()
+            }
+            2 -> {
+                apiData.sortedBy { it.titleText }.toMutableList()
+            }
+            else -> {
+                apiData
+            }
+        }
+
+        return list
     }
 
 }
