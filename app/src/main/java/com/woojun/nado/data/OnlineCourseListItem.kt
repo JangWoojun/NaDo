@@ -33,5 +33,6 @@ data class OnlineCourseListItem(
     val WEEKSEQ_NO: String,
     val WEEK_MK_CNT: Double,
     val WEEK_USE_YN: String,
-    val link: String
+    val link: String,
+    val category: String
 )
