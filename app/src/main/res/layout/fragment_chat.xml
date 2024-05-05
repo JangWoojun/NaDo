@@ -205,8 +205,8 @@
             android:layout_height="wrap_content"
             android:text="모르는 것이 있을 때 ? 클릭!"
             android:textColor="@color/gray_4"
-            app:layout_constraintBottom_toBottomOf="@+id/cardView5"
-            app:layout_constraintEnd_toStartOf="@+id/cardView5" />
+            app:layout_constraintBottom_toBottomOf="@+id/tooltip_button"
+            app:layout_constraintEnd_toStartOf="@+id/tooltip_button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

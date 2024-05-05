@@ -90,14 +90,14 @@
             android:id="@+id/horizontalScrollView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="30dp"
             android:scrollbars="none"
             app:layout_constraintTop_toBottomOf="@+id/indicator">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="8dp"
+                android:layout_marginVertical="14dp"
                 android:background="@color/white"
                 android:orientation="horizontal"
                 android:paddingHorizontal="13dp">
@@ -311,6 +311,7 @@
             android:layout_height="1dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="40dp"
             android:id="@+id/lecture_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -319,21 +320,22 @@
 
 
         <LinearLayout
-            android:layout_marginVertical="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lecture_list">
 
             <LinearLayout
                 android:id="@+id/left_button"
-                android:paddingHorizontal="10dp"
-                android:gravity="center"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:paddingHorizontal="10dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -353,15 +355,15 @@
 
             <LinearLayout
                 android:id="@+id/right_button"
-                android:paddingHorizontal="10dp"
-                android:gravity="center"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:paddingHorizontal="10dp">
 
                 <ImageView
-                    android:layout_marginStart="-4dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="-4dp"
                     android:src="@drawable/right_arrow_icon" />
 
             </LinearLayout>
