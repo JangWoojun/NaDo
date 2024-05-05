@@ -1,8 +1,5 @@
 package com.woojun.nado.database
 
-import android.app.Application
-import android.util.Log
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -28,7 +25,14 @@ class ViewModel : ViewModel() {
             override fun onResponse(call: Call<OnlineCourseList>, response: Response<OnlineCourseList>) {
                 if (response.isSuccessful) {
                     _onlineCourse.value = response.body()?.map {
-                        Lecture(it.COURSE_NM, it.CATEGORY_NM2, "https://sll.seoul.go.kr${it.COURSE_IMAGE_FILE_PATH}", it.link)
+                        Lecture(
+                            it.COURSE_NM,
+                            it.CATEGORY_NM2,
+                            "https://sll.seoul.go.kr${it.COURSE_IMAGE_FILE_PATH}",
+                            it.link,
+                            it.POPULARITY_YN == "N",
+                            it.category
+                        )
                     }?.toMutableList()
                 }
             }
@@ -47,7 +51,14 @@ class ViewModel : ViewModel() {
             override fun onResponse(call: Call<OnlineCourseList>, response: Response<OnlineCourseList>) {
                 if (response.isSuccessful) {
                     _recommendationOnlineCourse.value = response.body()?.map {
-                        Lecture(it.COURSE_NM, it.CATEGORY_NM2, "https://sll.seoul.go.kr${it.COURSE_IMAGE_FILE_PATH}", it.link)
+                        Lecture(
+                            it.COURSE_NM,
+                            it.CATEGORY_NM2,
+                            "https://sll.seoul.go.kr${it.COURSE_IMAGE_FILE_PATH}",
+                            it.link,
+                            it.POPULARITY_YN == "N",
+                            it.category
+                        )
                     }?.toMutableList()
                 }
             }
