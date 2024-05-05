@@ -24,4 +24,34 @@
         android:name="com.woojun.nado.fragment.SettingFragment"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting" />
+    <fragment
+        android:id="@+id/aiWriteFragment"
+        android:name="com.woojun.nado.fragment.resume.AiWriteFragment"
+        android:label="fragment_ai_write"
+        tools:layout="@layout/fragment_ai_write" />
+    <fragment
+        android:id="@+id/nameFragment"
+        android:name="com.woojun.nado.fragment.resume.NameFragment"
+        android:label="fragment_name"
+        tools:layout="@layout/fragment_name" />
+    <fragment
+        android:id="@+id/resumeListFragment"
+        android:name="com.woojun.nado.fragment.resume.ResumeListFragment"
+        android:label="fragment_resume_list"
+        tools:layout="@layout/fragment_resume_list" />
+    <fragment
+        android:id="@+id/resumeWriteFragment"
+        android:name="com.woojun.nado.fragment.resume.ResumeWriteFragment"
+        android:label="fragment_resume_write"
+        tools:layout="@layout/fragment_resume_write" />
+    <fragment
+        android:id="@+id/spellingFragment"
+        android:name="com.woojun.nado.fragment.resume.SpellingFragment"
+        android:label="fragment_spelling"
+        tools:layout="@layout/fragment_spelling" />
+    <fragment
+        android:id="@+id/resumeFragment"
+        android:name="com.woojun.nado.fragment.resume.ResumeFragment"
+        android:label="fragment_resume"
+        tools:layout="@layout/fragment_resume" />
 </navigation>
