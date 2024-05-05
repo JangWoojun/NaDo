@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.TextView
+import androidx.navigation.fragment.findNavController
 import com.woojun.nado.R
 import com.woojun.nado.ToolTip
 import com.woojun.nado.databinding.FragmentResumeBinding
@@ -64,6 +65,18 @@ class ResumeFragment : Fragment() {
             """.trimIndent()
 
             customDialog.show()
+        }
+
+        binding.writeButton.setOnClickListener {
+            findNavController().navigate(R.id.nameFragment)
+        }
+
+        binding.spellingButton.setOnClickListener {
+            findNavController().navigate(R.id.spellingFragment)
+        }
+
+        binding.aiButton.setOnClickListener {
+            findNavController().navigate(R.id.aiWriteFragment)
         }
 
     }
