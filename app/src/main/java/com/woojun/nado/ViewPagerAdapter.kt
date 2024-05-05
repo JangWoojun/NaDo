@@ -7,13 +7,13 @@ import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.woojun.nado.Utils.dpToPx
-import com.woojun.nado.databinding.LeectureItemBinding
+import com.woojun.nado.databinding.LectureItemBinding
 
 
 class ViewPagerAdapter(private val lectureList: MutableList<Lecture>) : RecyclerView.Adapter<ViewPagerAdapter.ViewPagerHolder>()  {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewPagerHolder {
-        val binding = LeectureItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = LectureItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewPagerHolder(binding).also { handler ->
             binding.box.setOnClickListener {
                 parent.context.startActivity(
@@ -32,7 +32,7 @@ class ViewPagerAdapter(private val lectureList: MutableList<Lecture>) : Recycler
     override fun getItemCount(): Int = Int.MAX_VALUE
 
 
-    class ViewPagerHolder(private val binding: LeectureItemBinding) :
+    class ViewPagerHolder(private val binding: LectureItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(lecture: Lecture) {
