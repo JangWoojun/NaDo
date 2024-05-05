@@ -38,12 +38,6 @@ class LectureAdapter(private val lectureList: MutableList<Lecture>): RecyclerVie
     class LectureViewHolder(private val binding: LectureItemBinding):
         ViewHolder(binding.root) {
         fun bind(lecture: Lecture) {
-            binding.root.updateLayoutParams<ViewGroup.MarginLayoutParams> {
-                bottomMargin = binding.root.context.dpToPx(40f).toInt()
-                marginStart = binding.root.context.dpToPx(40f).toInt()
-                marginEnd = binding.root.context.dpToPx(40f).toInt()
-            }
-
             if (binding.root.context != null) {
                 Glide.with(binding.root.context)
                     .load(lecture.image)
