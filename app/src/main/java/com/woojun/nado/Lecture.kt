@@ -5,6 +5,6 @@ data class Lecture(
     val subText: String,
     val image: String,
     val url: String,
-    val popularity: Boolean,
-    val category: Int
+    val isNotPopularity: Boolean,
+    val category: String
 )
