@@ -2,19 +2,31 @@ package com.woojun.nado
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import com.woojun.nado.database.ViewModel
 import com.woojun.nado.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var navController: NavController
+    private lateinit var viewModel: ViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        viewModel = ViewModelProvider(this)[ViewModel::class.java]
+        viewModel.loadOnlineCourse {
+            Toast.makeText(this@MainActivity, "네트워크 오류, 다시 시도해주세요", Toast.LENGTH_SHORT).show()
+        }
+        viewModel.loadRecommendationOnlineCourseList(4) {
+            Toast.makeText(this@MainActivity, "네트워크 오류, 다시 시도해주세요", Toast.LENGTH_SHORT).show()
+        }
 
         navController = findNavController(R.id.nav_host_fragment)
 
