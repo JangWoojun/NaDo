@@ -6,9 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.woojun.nado.Lecture
 import com.woojun.nado.MainActivity
+import com.woojun.nado.R
 import com.woojun.nado.ToolTip.createBalloon
 import com.woojun.nado.UpdateAdapter
 import com.woojun.nado.WebViewActivity
@@ -44,15 +46,15 @@ class HomeFragment : Fragment() {
         }
 
         binding.studyButton.setOnClickListener {
-            (requireActivity() as MainActivity).moveNavigation(1)
+            findNavController().navigate(R.id.sarangbang)
         }
 
         binding.supportButton.setOnClickListener {
-            (requireActivity() as MainActivity).moveNavigation(2)
+            findNavController().navigate(R.id.chat)
         }
 
         binding.communityButton.setOnClickListener {
-            (requireActivity() as MainActivity).moveNavigation(3)
+            findNavController().navigate(R.id.setting)
         }
 
         binding.lectureBox1.setOnClickListener {

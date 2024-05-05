@@ -2,64 +2,57 @@ package com.woojun.nado
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.woojun.nado.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+
+    private lateinit var navController: NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navController = findNavController(R.id.nav_host_fragment)
+        navController = findNavController(R.id.nav_host_fragment)
 
         binding.home.setOnClickListener {
-            resetNavigation()
-            binding.homeIcon.setImageResource(R.drawable.select_home_icon)
             navController.navigate(R.id.home)
         }
         binding.sarangbang.setOnClickListener {
-            resetNavigation()
-            binding.sarangbangIcon.setImageResource(R.drawable.select_sarangbang_icon)
             navController.navigate(R.id.sarangbang)
         }
         binding.chat.setOnClickListener {
-            resetNavigation()
-            binding.chatIcon.setImageResource(R.drawable.select_chat_icon)
             navController.navigate(R.id.chat)
         }
         binding.setting.setOnClickListener {
-            resetNavigation()
-            binding.settingIcon.setImageResource(R.drawable.select_setting_icon)
             navController.navigate(R.id.setting)
         }
-    }
 
-    fun moveNavigation(index: Int) {
-        val navController = findNavController(R.id.nav_host_fragment)
-        when (index) {
-            0 -> {
-                resetNavigation()
-                binding.homeIcon.setImageResource(R.drawable.select_home_icon)
-                navController.navigate(R.id.home)
-            }
-            1 -> {
-                resetNavigation()
-                binding.sarangbangIcon.setImageResource(R.drawable.select_sarangbang_icon)
-                navController.navigate(R.id.sarangbang)
-            }
-            2 -> {
-                resetNavigation()
-                binding.chatIcon.setImageResource(R.drawable.select_chat_icon)
-                navController.navigate(R.id.chat)
-            }
-            3 -> {
-                resetNavigation()
-                binding.settingIcon.setImageResource(R.drawable.select_setting_icon)
-                navController.navigate(R.id.setting)
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            resetNavigation()
+            when (destination.id) {
+                R.id.home -> {
+                    binding.homeIcon.setImageResource(R.drawable.select_home_icon)
+                }
+                R.id.sarangbang -> {
+                    binding.sarangbangIcon.setImageResource(R.drawable.select_sarangbang_icon)
+                }
+                R.id.chat -> {
+                    binding.chatIcon.setImageResource(R.drawable.select_chat_icon)
+                }
+                R.id.setting -> {
+                    binding.settingIcon.setImageResource(R.drawable.select_setting_icon)
+                }
             }
         }
+
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
     private fun resetNavigation() {
