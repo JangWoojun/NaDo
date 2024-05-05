@@ -1,17 +1,21 @@
 package com.woojun.nado.fragment
 
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.woojun.nado.Lecture
 import com.woojun.nado.R
 import com.woojun.nado.ToolTip
+import com.woojun.nado.UpdateAdapter
 import com.woojun.nado.Utils.dpToPx
 import com.woojun.nado.ViewPagerAdapter
 import com.woojun.nado.databinding.FragmentSarangbangBinding
@@ -57,10 +61,8 @@ class SarangbangFragment : Fragment() {
             balloon.showAlignBottom(it)
         }
 
-        val adapter = ViewPagerAdapter(list)
-
         binding.viewPager.apply {
-            this.adapter = adapter
+            this.adapter = ViewPagerAdapter(list)
             this.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
             offscreenPageLimit = 3
 
@@ -91,6 +93,17 @@ class SarangbangFragment : Fragment() {
 
         }
         binding.indicator.createDotPanel(list.size, R.drawable.indicator_dot_off, R.drawable.indicator_dot_on, 0)
+
+        binding.lectureList.adapter = LectureAdapter(list)
+        binding.lectureList.layoutManager = LinearLayoutManager(requireContext())
+
+
+    }
+
+    private fun resetText() {
+        binding.orderLatestButton.setTextColor(Color.parseColor("#000000"))
+        binding.orderPopularityButton.setTextColor(Color.parseColor("#000000"))
+        binding.orderNameButton.setTextColor(Color.parseColor("#000000"))
     }
 
     override fun onPause() {
