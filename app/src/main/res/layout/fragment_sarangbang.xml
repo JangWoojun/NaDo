@@ -102,6 +102,7 @@
                 android:paddingHorizontal="13dp">
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/button1"
                     android:layout_marginEnd="8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -110,7 +111,9 @@
                     app:strokeColor="@color/primary">
 
                     <TextView
-                        style="@style/button_text"
+                        android:id="@+id/button1_text"
+                        android:fontFamily="@font/spoqahansansneo_bold"
+                        android:textSize="20sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -123,126 +126,168 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/button2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    app:cardBackgroundColor="@color/primary"
+                    app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="100dp"
                     app:strokeColor="@color/primary">
 
                     <TextView
-                        style="@style/button_text"
+                        android:id="@+id/button2_text"
+                        android:fontFamily="@font/spoqahansansneo_bold"
+                        android:textSize="20sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginHorizontal="21dp"
                         android:layout_marginVertical="4dp"
-                        android:text="전체"
-                        android:textColor="@color/white" />
+                        android:text="법정의무"
+                        android:textColor="@color/gray_6" />
 
 
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/button3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    app:cardBackgroundColor="@color/primary"
+                    app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="100dp"
                     app:strokeColor="@color/primary">
 
                     <TextView
-                        style="@style/button_text"
+                        android:id="@+id/button3_text"
+                        android:fontFamily="@font/spoqahansansneo_bold"
+                        android:textSize="20sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginHorizontal="21dp"
                         android:layout_marginVertical="4dp"
-                        android:text="전체"
-                        android:textColor="@color/white" />
+                        android:text="인문/교양"
+                        android:textColor="@color/gray_6" />
 
 
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/button4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    app:cardBackgroundColor="@color/primary"
+                    app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="100dp"
                     app:strokeColor="@color/primary">
 
                     <TextView
-                        style="@style/button_text"
+                        android:id="@+id/button4_text"
+                        android:fontFamily="@font/spoqahansansneo_bold"
+                        android:textSize="20sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginHorizontal="21dp"
                         android:layout_marginVertical="4dp"
-                        android:text="전체"
-                        android:textColor="@color/white" />
+                        android:text="외국어"
+                        android:textColor="@color/gray_6" />
 
 
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/button5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    app:cardBackgroundColor="@color/primary"
+                    app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="100dp"
                     app:strokeColor="@color/primary">
 
                     <TextView
-                        style="@style/button_text"
+                        android:id="@+id/button5_text"
+                        android:fontFamily="@font/spoqahansansneo_bold"
+                        android:textSize="20sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginHorizontal="21dp"
                         android:layout_marginVertical="4dp"
-                        android:text="전체"
-                        android:textColor="@color/white" />
+                        android:text="가족/건강"
+                        android:textColor="@color/gray_6" />
 
 
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/button6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    app:cardBackgroundColor="@color/primary"
+                    app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="100dp"
                     app:strokeColor="@color/primary">
 
                     <TextView
-                        style="@style/button_text"
+                        android:id="@+id/button6_text"
+                        android:fontFamily="@font/spoqahansansneo_bold"
+                        android:textSize="20sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginHorizontal="21dp"
                         android:layout_marginVertical="4dp"
-                        android:text="전체"
-                        android:textColor="@color/white" />
+                        android:text="정보/컴퓨터"
+                        android:textColor="@color/gray_6" />
 
 
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/button7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:cardBackgroundColor="@color/primary"
+                    android:layout_marginEnd="8dp"
+                    app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="100dp"
                     app:strokeColor="@color/primary">
 
                     <TextView
-                        style="@style/button_text"
+                        android:id="@+id/button7_text"
+                        android:fontFamily="@font/spoqahansansneo_bold"
+                        android:textSize="20sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginHorizontal="21dp"
                         android:layout_marginVertical="4dp"
-                        android:text="전체"
-                        android:textColor="@color/white" />
+                        android:text="자격증"
+                        android:textColor="@color/gray_6" />
+
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/button8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="100dp"
+                    app:strokeColor="@color/primary">
+
+                    <TextView
+                        android:id="@+id/button8_text"
+                        android:fontFamily="@font/spoqahansansneo_bold"
+                        android:textSize="20sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginHorizontal="21dp"
+                        android:layout_marginVertical="4dp"
+                        android:text="취/창업"
+                        android:textColor="@color/gray_6" />
 
 
                 </com.google.android.material.card.MaterialCardView>

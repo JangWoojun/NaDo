@@ -38,7 +38,8 @@ class SarangbangFragment : Fragment() {
     private var pageIndex = 0
     private var pageEndIndex = 0
 
-    private var buttonIndex = 0
+    private var categoryButtonIndex = 0
+    private var orderButtonIndex = 0
 
     private lateinit var lectureList: MutableList<List<Lecture>>
 
@@ -57,6 +58,9 @@ class SarangbangFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val categoryBoxList = listOf(binding.button1, binding.button2, binding.button3, binding.button4, binding.button5, binding.button6, binding.button7, binding.button8)
+        val categoryTextList = listOf(binding.button1Text, binding.button2Text, binding.button3Text, binding.button4Text, binding.button5Text, binding.button6Text, binding.button7Text, binding.button8Text)
 
         binding.infoButton.setOnClickListener {
             val balloon = ToolTip.createBalloon(
@@ -139,11 +143,13 @@ class SarangbangFragment : Fragment() {
             binding.orderLatestButton.setOnClickListener {
                 lectureList = mutableListOf()
 
-                resetText()
+                resetOrderButton()
                 it as TextView
                 it.setTextColor(Color.parseColor("#FF5656"))
 
-                selectOrder(0, selectCategory(buttonIndex, apiData))
+                orderButtonIndex = 0
+
+                selectOrder(orderButtonIndex, selectCategory(categoryButtonIndex, apiData))
                     .chunked(5).forEach {
                     lectureList.add(it)
                 }
@@ -160,11 +166,13 @@ class SarangbangFragment : Fragment() {
             binding.orderPopularityButton.setOnClickListener {
                 lectureList = mutableListOf()
 
-                resetText()
+                resetOrderButton()
                 it as TextView
                 it.setTextColor(Color.parseColor("#FF5656"))
 
-                selectOrder(1, selectCategory(buttonIndex, apiData))
+                orderButtonIndex = 1
+
+                selectOrder(orderButtonIndex, selectCategory(categoryButtonIndex, apiData))
                     .chunked(5).forEach {
                         lectureList.add(it)
                     }
@@ -181,11 +189,13 @@ class SarangbangFragment : Fragment() {
             binding.orderNameButton.setOnClickListener {
                 lectureList = mutableListOf()
 
-                resetText()
+                resetOrderButton()
                 it as TextView
                 it.setTextColor(Color.parseColor("#FF5656"))
 
-                selectOrder(2, selectCategory(buttonIndex, apiData))
+                orderButtonIndex = 2
+
+                selectOrder(orderButtonIndex, selectCategory(categoryButtonIndex, apiData))
                     .chunked(5).forEach {
                         lectureList.add(it)
                     }
@@ -196,6 +206,31 @@ class SarangbangFragment : Fragment() {
                 if (lectureList.size != 0) {
                     binding.pageText.text = "${pageIndex + 1}/${pageEndIndex + 1} 페이지"
                     binding.lectureList.adapter = LectureAdapter(lectureList[pageIndex].toMutableList())
+                }
+            }
+
+            categoryBoxList.forEachIndexed { index, card ->
+                card.setOnClickListener {
+                    lectureList = mutableListOf()
+                    resetCategoryButton()
+
+                    categoryButtonIndex = index
+
+                    selectCategory(categoryButtonIndex, selectOrder(orderButtonIndex, apiData))
+                        .chunked(5).forEach {
+                            lectureList.add(it)
+                        }
+
+                    pageEndIndex = lectureList.size - 1
+                    pageIndex = 0
+
+                    if (lectureList.size != 0) {
+                        binding.pageText.text = "${pageIndex + 1}/${pageEndIndex + 1} 페이지"
+                        binding.lectureList.adapter = LectureAdapter(lectureList[pageIndex].toMutableList())
+                    }
+
+                    card.setCardBackgroundColor(Color.parseColor("#FF5656"))
+                    categoryTextList[index].setTextColor(Color.parseColor("#FFFFFF"))
                 }
             }
 
@@ -246,10 +281,22 @@ class SarangbangFragment : Fragment() {
 
     }
 
-    private fun resetText() {
+    private fun resetOrderButton() {
         binding.orderLatestButton.setTextColor(Color.parseColor("#000000"))
         binding.orderPopularityButton.setTextColor(Color.parseColor("#000000"))
         binding.orderNameButton.setTextColor(Color.parseColor("#000000"))
+    }
+
+    private fun resetCategoryButton() {
+        val categoryBoxList = listOf(binding.button1, binding.button2, binding.button3, binding.button4, binding.button5, binding.button6, binding.button7, binding.button8)
+        val categoryTextList = listOf(binding.button1Text, binding.button2Text, binding.button3Text, binding.button4Text, binding.button5Text, binding.button6Text, binding.button7Text, binding.button8Text)
+
+        categoryBoxList.forEach {
+            it.setCardBackgroundColor(Color.parseColor("#FFFFFF"))
+        }
+        categoryTextList.forEach {
+            it.setTextColor(Color.parseColor("#232323"))
+        }
     }
 
     override fun onPause() {
@@ -272,10 +319,31 @@ class SarangbangFragment : Fragment() {
             0 -> {
                 apiData
             }
+            1 -> {
+                apiData.filter { it.category == "법정의무" }
+            }
+            2 -> {
+                apiData.filter { it.category == "인문/교양" }
+            }
+            3 -> {
+                apiData.filter { it.category == "외국어" }
+            }
+            4 -> {
+                apiData.filter { it.category == "가족/건강" }
+            }
+            5 -> {
+                apiData.filter { it.category == "정보/컴퓨터" }
+            }
+            6 -> {
+                apiData.filter { it.category == "자격증" }
+            }
+            7 -> {
+                apiData.filter { it.category == "취/창업" }
+            }
             else -> {
                 apiData
             }
-        }
+        }.toMutableList()
 
         return list
     }
