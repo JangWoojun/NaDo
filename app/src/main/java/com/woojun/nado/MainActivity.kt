@@ -22,10 +22,13 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this)[ViewModel::class.java]
         viewModel.loadOnlineCourse {
-            Toast.makeText(this@MainActivity, "네트워크 오류, 다시 시도해주세요", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@MainActivity, "네트워크 오류, 다시 시도해주세요", Toast.LENGTH_LONG).show()
         }
         viewModel.loadRecommendationOnlineCourseList(4) {
-            Toast.makeText(this@MainActivity, "네트워크 오류, 다시 시도해주세요", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@MainActivity, "네트워크 오류, 다시 시도해주세요", Toast.LENGTH_LONG).show()
+        }
+        viewModel.loadEducationList {
+            Toast.makeText(this@MainActivity, "네트워크 오류, 다시 시도해주세요", Toast.LENGTH_LONG).show()
         }
 
         navController = findNavController(R.id.nav_host_fragment)
