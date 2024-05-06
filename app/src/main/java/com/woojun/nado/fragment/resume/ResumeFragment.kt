@@ -12,8 +12,13 @@ import android.view.Window
 import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import com.woojun.nado.R
+import com.woojun.nado.database.AppDatabase
+import com.woojun.nado.database.Preferences.loadUserName
 import com.woojun.nado.util.ToolTip
 import com.woojun.nado.databinding.FragmentResumeBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class ResumeFragment : Fragment() {
     private var _binding: FragmentResumeBinding? = null
@@ -67,11 +72,33 @@ class ResumeFragment : Fragment() {
         }
 
         binding.writeButton.setOnClickListener {
-            findNavController().navigate(R.id.nameFragment)
+            CoroutineScope(Dispatchers.IO).launch {
+                val resumeDao = AppDatabase.getDatabase(requireContext())?.resumeDao()
+                val resumeList = resumeDao?.getResumeList()
+
+                if (resumeList != null && resumeList.size > 0) {
+                    findNavController().navigate(R.id.resumeListFragment)
+                } else if (loadUserName(requireContext()) != null){
+                    findNavController().navigate(R.id.resumeWriteFragment)
+                } else {
+                    findNavController().navigate(R.id.nameFragment)
+                }
+            }
         }
 
         binding.spellingButton.setOnClickListener {
-            findNavController().navigate(R.id.spellingFragment)
+            CoroutineScope(Dispatchers.IO).launch {
+                val resumeDao = AppDatabase.getDatabase(requireContext())?.resumeDao()
+                val resumeList = resumeDao?.getResumeList()
+
+                if (resumeList != null && resumeList.size > 0) {
+                    findNavController().navigate(R.id.spellingFragment)
+                } else if (loadUserName(requireContext()) != null){
+                    findNavController().navigate(R.id.resumeWriteFragment)
+                } else {
+                    findNavController().navigate(R.id.nameFragment)
+                }
+            }
         }
 
         binding.aiButton.setOnClickListener {
