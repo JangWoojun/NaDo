@@ -16,7 +16,13 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.woojun.nado.R
+import com.woojun.nado.data.Resume
+import com.woojun.nado.database.AppDatabase
 import com.woojun.nado.databinding.FragmentResumeWriteBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.Locale
 
 class ResumeWriteFragment : Fragment() {
@@ -50,11 +56,14 @@ class ResumeWriteFragment : Fragment() {
 
         binding.button2.setOnClickListener {
             if (binding.contentInput.text.isNotEmpty()) {
-                findNavController().navigate(
-                    R.id.resumeWriteFragment, Bundle().apply {
-                        this.putString("name", name)
+                CoroutineScope(Dispatchers.IO).launch {
+                    val resumeDao = AppDatabase.getDatabase(requireContext())?.resumeDao()
+                    resumeDao?.insertResume(Resume(name = name ?: "", content = binding.contentInput.text.toString()))
+
+                    withContext(Dispatchers.Main) {
+                        findNavController().navigate(com.woojun.nado.R.id.resumeListFragment)
                     }
-                )
+                }
             } else {
                 Toast.makeText(requireContext(), "본문을 입력해주세요", Toast.LENGTH_SHORT).show()
             }
@@ -63,7 +72,7 @@ class ResumeWriteFragment : Fragment() {
         binding.nameText.text = name
 
         binding.nameChangeButton.setOnClickListener {
-            findNavController().popBackStack()
+            findNavController().navigate(R.id.nameFragment)
         }
 
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(requireContext())
