@@ -79,7 +79,12 @@ class ResumeFragment : Fragment() {
 
                 withContext(Dispatchers.Main) {
                     if (resumeList != null && resumeList.size > 0) {
-                        findNavController().navigate(R.id.resumeListFragment)
+                        findNavController().navigate(
+                            R.id.resumeListFragment,
+                            Bundle().apply {
+                                this.putBoolean("isWrite", true)
+                            }
+                        )
                     } else if (loadUserName(requireContext()) != null){
                         findNavController().navigate(R.id.resumeWriteFragment)
                     } else {
@@ -96,7 +101,12 @@ class ResumeFragment : Fragment() {
 
                 withContext(Dispatchers.Main) {
                     if (resumeList != null && resumeList.size > 0) {
-                        findNavController().navigate(R.id.spellingFragment)
+                        findNavController().navigate(
+                            R.id.resumeListFragment,
+                            Bundle().apply {
+                                this.putBoolean("isWrite", false)
+                            }
+                        )
                     } else if (loadUserName(requireContext()) != null){
                         findNavController().navigate(R.id.resumeWriteFragment)
                     } else {
