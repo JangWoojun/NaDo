@@ -18,6 +18,7 @@ import androidx.navigation.fragment.findNavController
 import com.woojun.nado.R
 import com.woojun.nado.data.Resume
 import com.woojun.nado.database.AppDatabase
+import com.woojun.nado.database.Preferences.loadUserName
 import com.woojun.nado.databinding.FragmentResumeWriteBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -48,7 +49,7 @@ class ResumeWriteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val name = arguments?.getString("name")
+        val name = loadUserName(requireContext())
 
         binding.button1.setOnClickListener {
             findNavController().popBackStack()
@@ -61,7 +62,7 @@ class ResumeWriteFragment : Fragment() {
                     resumeDao?.insertResume(Resume(name = name ?: "", content = binding.contentInput.text.toString()))
 
                     withContext(Dispatchers.Main) {
-                        findNavController().navigate(com.woojun.nado.R.id.resumeListFragment)
+                        findNavController().navigate(R.id.resumeListFragment)
                     }
                 }
             } else {

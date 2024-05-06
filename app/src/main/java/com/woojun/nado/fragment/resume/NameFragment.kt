@@ -18,6 +18,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.woojun.nado.R
+import com.woojun.nado.database.Preferences.saveUserName
 import com.woojun.nado.databinding.FragmentNameBinding
 import java.util.Locale
 
@@ -54,11 +55,8 @@ class NameFragment : Fragment() {
 
         binding.button2.setOnClickListener {
             if (binding.nameInput.text.isNotEmpty()) {
-                findNavController().navigate(
-                    R.id.resumeWriteFragment, Bundle().apply {
-                        this.putString("name", binding.nameInput.text.toString())
-                    }
-                )
+                saveUserName(requireContext(), binding.nameInput.text.toString())
+                findNavController().navigate(R.id.resumeWriteFragment)
             } else {
                 Toast.makeText(requireContext(), "이름을 입력해주세요.", Toast.LENGTH_SHORT).show()
             }
