@@ -8,5 +8,6 @@ data class Resume(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     val name: String,
-    val content: String
+    val content: String,
+    var isSelected: Boolean = false
 )

@@ -11,7 +11,7 @@ import com.woojun.nado.data.Resume
     TypeConverter::class
 )
 
-@Database(entities = [Resume::class], version = 1)
+@Database(entities = [Resume::class], version = 2)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun resumeDao(): ResumeDAO
 
