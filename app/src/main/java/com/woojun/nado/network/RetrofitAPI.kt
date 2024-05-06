@@ -1,6 +1,7 @@
 package com.woojun.nado.network
 
 import com.woojun.nado.BuildConfig
+import com.woojun.nado.data.Ai
 import com.woojun.nado.data.OnlineCourseList
 import com.woojun.nado.data.Pdf
 import com.woojun.nado.data.Spelling
@@ -32,5 +33,9 @@ interface RetrofitAPI {
     @POST("${BuildConfig.baseUrl}resume/spelling")
     fun checkSpelling(
         @Body spelling: Spelling
+    ): Call<String>
+    @POST("${BuildConfig.baseUrl}resume/gpt")
+    fun generateResumeGpt(
+        @Body keywords: Ai
     ): Call<String>
 }
