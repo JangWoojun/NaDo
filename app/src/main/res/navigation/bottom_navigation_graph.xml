@@ -54,4 +54,9 @@
         android:name="com.woojun.nado.fragment.resume.ResumeFragment"
         android:label="fragment_resume"
         tools:layout="@layout/fragment_resume" />
+    <fragment
+        android:id="@+id/educationFragment"
+        android:name="com.woojun.nado.fragment.EducationFragment"
+        android:label="fragment_education"
+        tools:layout="@layout/fragment_education" />
 </navigation>
