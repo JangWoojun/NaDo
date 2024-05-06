@@ -3,6 +3,7 @@ package com.woojun.nado.network
 import com.woojun.nado.BuildConfig
 import com.woojun.nado.data.OnlineCourseList
 import com.woojun.nado.data.Pdf
+import com.woojun.nado.data.Spelling
 import com.woojun.nado.data.TbViewProgram
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -28,5 +29,8 @@ interface RetrofitAPI {
         @Body pdf: Pdf
     ): Call<ResponseBody>
 
-
+    @POST("${BuildConfig.baseUrl}resume/spelling")
+    fun checkSpelling(
+        @Body spelling: Spelling
+    ): Call<String>
 }
