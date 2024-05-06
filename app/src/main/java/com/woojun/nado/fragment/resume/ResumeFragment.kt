@@ -19,6 +19,7 @@ import com.woojun.nado.databinding.FragmentResumeBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ResumeFragment : Fragment() {
     private var _binding: FragmentResumeBinding? = null
@@ -76,12 +77,14 @@ class ResumeFragment : Fragment() {
                 val resumeDao = AppDatabase.getDatabase(requireContext())?.resumeDao()
                 val resumeList = resumeDao?.getResumeList()
 
-                if (resumeList != null && resumeList.size > 0) {
-                    findNavController().navigate(R.id.resumeListFragment)
-                } else if (loadUserName(requireContext()) != null){
-                    findNavController().navigate(R.id.resumeWriteFragment)
-                } else {
-                    findNavController().navigate(R.id.nameFragment)
+                withContext(Dispatchers.Main) {
+                    if (resumeList != null && resumeList.size > 0) {
+                        findNavController().navigate(R.id.resumeListFragment)
+                    } else if (loadUserName(requireContext()) != null){
+                        findNavController().navigate(R.id.resumeWriteFragment)
+                    } else {
+                        findNavController().navigate(R.id.nameFragment)
+                    }
                 }
             }
         }
@@ -91,12 +94,14 @@ class ResumeFragment : Fragment() {
                 val resumeDao = AppDatabase.getDatabase(requireContext())?.resumeDao()
                 val resumeList = resumeDao?.getResumeList()
 
-                if (resumeList != null && resumeList.size > 0) {
-                    findNavController().navigate(R.id.spellingFragment)
-                } else if (loadUserName(requireContext()) != null){
-                    findNavController().navigate(R.id.resumeWriteFragment)
-                } else {
-                    findNavController().navigate(R.id.nameFragment)
+                withContext(Dispatchers.Main) {
+                    if (resumeList != null && resumeList.size > 0) {
+                        findNavController().navigate(R.id.spellingFragment)
+                    } else if (loadUserName(requireContext()) != null){
+                        findNavController().navigate(R.id.resumeWriteFragment)
+                    } else {
+                        findNavController().navigate(R.id.nameFragment)
+                    }
                 }
             }
         }
