@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.woojun.nado.data.Lecture
 import com.woojun.nado.R
+import com.woojun.nado.adapter.LectureAdapter
 import com.woojun.nado.util.ToolTip
 import com.woojun.nado.util.Utils.dpToPx
 import com.woojun.nado.adapter.ViewPagerAdapter

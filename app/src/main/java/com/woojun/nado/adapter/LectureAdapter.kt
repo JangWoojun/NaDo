@@ -1,4 +1,4 @@
-package com.woojun.nado.fragment
+package com.woojun.nado.adapter
 
 import android.content.Intent
 import android.view.LayoutInflater
