@@ -4,6 +4,9 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -107,7 +110,16 @@ class AiWriteFragment : Fragment() {
                 response: Response<String>
             ) {
                 if (response.isSuccessful) {
-                    binding.contentInput.setText(response.body().toString())
+                    binding.contentInput.apply {
+                        this.setText(response.body().toString())
+                        this.text.setSpan(
+                            ForegroundColorSpan(
+                                Color.parseColor("FF5656")),
+                            0,
+                            response.body().toString().length,
+                            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                        )
+                    }
                 }
             }
 
