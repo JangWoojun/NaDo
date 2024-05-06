@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.TextView
+import androidx.navigation.fragment.findNavController
 import com.woojun.nado.R
 import com.woojun.nado.util.ToolTip
 import com.woojun.nado.databinding.FragmentSupportBinding
@@ -75,6 +76,18 @@ class SupportFragment : Fragment() {
             """.trimIndent()
 
             customDialog.show()
+        }
+
+        binding.resumeButton.setOnClickListener {
+            findNavController().navigate(R.id.resumeFragment)
+        }
+
+        binding.interviewButton.setOnClickListener {
+            findNavController().navigate(R.id.interviewFragment)
+        }
+
+        binding.educationButton.setOnClickListener {
+            findNavController().navigate(R.id.educationFragment)
         }
     }
 
