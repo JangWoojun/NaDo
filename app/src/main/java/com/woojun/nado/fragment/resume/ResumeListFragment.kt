@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.woojun.nado.R
 import com.woojun.nado.adapter.SupportAdapter
@@ -50,63 +51,96 @@ class ResumeListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val isWrite = arguments?.getBoolean("isWrite") ?: true
         CoroutineScope(Dispatchers.IO).launch {
-            val resumeDao = AppDatabase.getDatabase(requireContext())?.resumeDao()
-            val adapter = SupportAdapter(resumeDao!!.getResumeList())
+                val resumeDao = AppDatabase.getDatabase(requireContext())?.resumeDao()
+                val adapter = SupportAdapter(resumeDao!!.getResumeList())
 
-            withContext(Dispatchers.Main) {
+                withContext(Dispatchers.Main) {
 
-                binding.nameText.apply {
-                    val name = loadUserName(requireContext())
-                    val spannableString = SpannableString("${name}님의\n자기소개서 입니다.")
-                    spannableString.setSpan(
-                        TypefaceSpan(
-                            ResourcesCompat.getFont(
-                                requireContext(),
-                                R.font.spoqahansansneo_bold
-                            )!!
-                        ),
-                        0,
-                        name!!.length,
-                        SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE
-                    )
-                    this.text = spannableString
-                }
-
-                binding.resumeList.adapter = adapter
-                binding.resumeList.layoutManager = LinearLayoutManager(requireContext())
-
-
-                binding.button2.setOnClickListener {
-                    if (adapter.getIndex() != null) {
-                        CoroutineScope(Dispatchers.IO).launch {
-                            val resume = resumeDao.getResumeList()[adapter.getIndex()!!]
-                            postPdf(Pdf(resume.name, resume.content))
-                        }
-                    } else {
-                        Toast.makeText(requireContext(), "자기소개서를 선택해주세요.", Toast.LENGTH_SHORT)
-                            .show()
+                    binding.nameText.apply {
+                        val name = loadUserName(requireContext())
+                        val spannableString = SpannableString("${name}님의\n자기소개서 목록입니다.")
+                        spannableString.setSpan(
+                            TypefaceSpan(
+                                ResourcesCompat.getFont(
+                                    requireContext(),
+                                    R.font.spoqahansansneo_bold
+                                )!!
+                            ),
+                            0,
+                            name!!.length,
+                            SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE
+                        )
+                        this.text = spannableString
                     }
-                }
 
-                binding.button1.setOnClickListener {
-                    if (adapter.getIndex() != null) {
-                        CoroutineScope(Dispatchers.IO).launch {
-                            val resume = resumeDao.getResumeList()[adapter.getIndex()!!]
-                            resumeDao.deleteResume(resume)
+                    binding.resumeList.adapter = adapter
+                    binding.resumeList.layoutManager = LinearLayoutManager(requireContext())
 
-                            withContext(Dispatchers.Main) {
-                                adapter.removeItem(adapter.getIndex()!!)
+                    binding.button1.setOnClickListener {
+                        if (adapter.getIndex() != null) {
+                            CoroutineScope(Dispatchers.IO).launch {
+                                val resume = resumeDao.getResumeList()[adapter.getIndex()!!]
+                                resumeDao.deleteResume(resume)
+
+                                withContext(Dispatchers.Main) {
+                                    adapter.removeItem(adapter.getIndex()!!)
+                                }
+                            }
+                        } else {
+                            Toast.makeText(requireContext(), "자기소개서를 선택해주세요.", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
+                    if (!isWrite) {
+                        binding.titleText.text = "맞춤법 검사"
+
+                        binding.button2Text.text = "검사"
+                        binding.button2.setOnClickListener {
+                            if (adapter.getIndex() != null) {
+                                CoroutineScope(Dispatchers.IO).launch {
+                                    val resume = resumeDao.getResumeList()[adapter.getIndex()!!]
+                                    withContext(Dispatchers.Main) {
+                                        findNavController().navigate(
+                                            R.id.spellingFragment, Bundle().apply {
+                                                this.putString("content", resume.content)
+                                            }
+                                        )
+                                    }
+                                }
+                            } else {
+                                Toast.makeText(requireContext(), "자기소개서를 선택해주세요.", Toast.LENGTH_SHORT)
+                                    .show()
                             }
                         }
+
+                        binding.pdfButton.visibility = View.GONE
                     } else {
-                        Toast.makeText(requireContext(), "자기소개서를 선택해주세요.", Toast.LENGTH_SHORT).show()
+                        binding.titleText.text = "작성 후 변환"
+
+                        binding.button2Text.text = "작성"
+                        binding.button2.setOnClickListener {
+                            findNavController().navigate(R.id.resumeWriteFragment)
+                        }
+
+                        binding.pdfButton.visibility = View.VISIBLE
+                    }
+
+                    binding.pdfButton.setOnClickListener {
+                        if (adapter.getIndex() != null) {
+                            CoroutineScope(Dispatchers.IO).launch {
+                                val resume = resumeDao.getResumeList()[adapter.getIndex()!!]
+                                postPdf(Pdf(resume.name, resume.content))
+                            }
+                        } else {
+                            Toast.makeText(requireContext(), "자기소개서를 선택해주세요.", Toast.LENGTH_SHORT)
+                                .show()
+                        }
                     }
                 }
+
             }
-
-        }
-
     }
 
     override fun onDestroyView() {
