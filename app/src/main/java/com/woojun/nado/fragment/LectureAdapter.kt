@@ -3,13 +3,11 @@ package com.woojun.nado.fragment
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.woojun.nado.Lecture
-import com.woojun.nado.Utils.dpToPx
+import com.woojun.nado.data.Lecture
 import com.woojun.nado.WebViewActivity
 import com.woojun.nado.databinding.LectureItemBinding
 

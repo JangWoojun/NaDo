@@ -1,4 +1,4 @@
-package com.woojun.nado
+package com.woojun.nado.data
 
 data class Lecture(
     val titleText: String,

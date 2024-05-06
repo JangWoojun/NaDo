@@ -11,8 +11,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.woojun.nado.R
-import com.woojun.nado.ToolTip.createBalloon
-import com.woojun.nado.UpdateAdapter
+import com.woojun.nado.util.ToolTip.createBalloon
+import com.woojun.nado.adapter.UpdateAdapter
 import com.woojun.nado.WebViewActivity
 import com.woojun.nado.database.ViewModel
 import com.woojun.nado.databinding.FragmentHomeBinding

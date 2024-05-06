@@ -3,7 +3,7 @@ package com.woojun.nado.database
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.woojun.nado.Lecture
+import com.woojun.nado.data.Lecture
 import com.woojun.nado.data.OnlineCourseList
 import com.woojun.nado.network.RetrofitAPI
 import com.woojun.nado.network.RetrofitClient

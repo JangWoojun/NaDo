@@ -13,7 +13,7 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.TextView
 import com.woojun.nado.R
-import com.woojun.nado.ToolTip
+import com.woojun.nado.util.ToolTip
 import com.woojun.nado.databinding.FragmentSupportBinding
 
 class SupportFragment : Fragment() {

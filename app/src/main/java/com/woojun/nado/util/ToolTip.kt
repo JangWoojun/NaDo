@@ -1,13 +1,13 @@
-package com.woojun.nado
+package com.woojun.nado.util
 
 import android.content.Context
 import android.util.TypedValue
-import android.view.Gravity
 import android.view.View
 import androidx.lifecycle.LifecycleOwner
 import com.skydoves.balloon.ArrowPositionRules
 import com.skydoves.balloon.Balloon
 import com.skydoves.balloon.BalloonSizeSpec
+import com.woojun.nado.R
 
 object ToolTip {
     fun createBalloon(

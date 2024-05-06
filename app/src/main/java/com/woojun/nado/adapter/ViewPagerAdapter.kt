@@ -1,4 +1,4 @@
-package com.woojun.nado
+package com.woojun.nado.adapter
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -6,8 +6,9 @@ import android.view.ViewGroup
 import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.woojun.nado.Utils.dpToPx
-import com.woojun.nado.databinding.LectureItemBinding
+import com.woojun.nado.WebViewActivity
+import com.woojun.nado.util.Utils.dpToPx
+import com.woojun.nado.data.Lecture
 import com.woojun.nado.databinding.ViewpagerItemBinding
 
 

@@ -1,4 +1,4 @@
-package com.woojun.nado
+package com.woojun.nado.util
 
 import android.content.Context
 

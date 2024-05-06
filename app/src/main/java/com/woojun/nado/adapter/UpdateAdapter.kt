@@ -1,4 +1,4 @@
-package com.woojun.nado
+package com.woojun.nado.adapter
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.woojun.nado.WebViewActivity
+import com.woojun.nado.data.Lecture
 import com.woojun.nado.databinding.UpdateItemBinding
 
 class UpdateAdapter(private val lectureList: MutableList<Lecture>): RecyclerView.Adapter<UpdateAdapter.UpdateViewHolder>() {

@@ -12,9 +12,8 @@ import android.view.Window
 import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import com.woojun.nado.R
-import com.woojun.nado.ToolTip
+import com.woojun.nado.util.ToolTip
 import com.woojun.nado.databinding.FragmentResumeBinding
-import com.woojun.nado.databinding.FragmentSettingBinding
 
 class ResumeFragment : Fragment() {
     private var _binding: FragmentResumeBinding? = null

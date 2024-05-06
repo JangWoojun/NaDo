@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.woojun.nado.ToolTip
+import com.woojun.nado.util.ToolTip
 import com.woojun.nado.databinding.FragmentCommunityBinding
 
 class CommunityFragment : Fragment() {
