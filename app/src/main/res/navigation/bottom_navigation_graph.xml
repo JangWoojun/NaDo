@@ -64,4 +64,34 @@
         android:name="com.woojun.nado.fragment.interview.InterviewFragment"
         android:label="fragment_interview"
         tools:layout="@layout/fragment_interview" />
+    <fragment
+        android:id="@+id/aiInterviewFragment"
+        android:name="com.woojun.nado.fragment.interview.AiInterviewFragment"
+        android:label="fragment_ai_interview"
+        tools:layout="@layout/fragment_ai_interview" />
+    <fragment
+        android:id="@+id/aiInterviewResultFragment"
+        android:name="com.woojun.nado.fragment.interview.AiInterviewResultFragment"
+        android:label="fragment_ai_interview_result"
+        tools:layout="@layout/fragment_ai_interview_result" />
+    <fragment
+        android:id="@+id/interviewListFragment"
+        android:name="com.woojun.nado.fragment.interview.InterviewListFragment"
+        android:label="fragment_interview_list"
+        tools:layout="@layout/fragment_interview_list" />
+    <fragment
+        android:id="@+id/interviewReadyFragment"
+        android:name="com.woojun.nado.fragment.interview.InterviewReadyFragment"
+        android:label="fragment_interview_ready"
+        tools:layout="@layout/fragment_interview_ready" />
+    <fragment
+        android:id="@+id/interviewWriteFragment"
+        android:name="com.woojun.nado.fragment.interview.InterviewWriteFragment"
+        android:label="fragment_interview_write"
+        tools:layout="@layout/fragment_interview_write" />
+    <fragment
+        android:id="@+id/myInterviewFragment"
+        android:name="com.woojun.nado.fragment.interview.MyInterviewFragment"
+        android:label="fragment_my_interview"
+        tools:layout="@layout/fragment_my_interview" />
 </navigation>
