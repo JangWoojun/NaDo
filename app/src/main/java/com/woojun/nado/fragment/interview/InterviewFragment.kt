@@ -67,7 +67,7 @@ class InterviewFragment : Fragment() {
         }
 
         binding.interviewReadyButton.setOnClickListener {
-            findNavController().navigate(R.id.interviewFragment)
+            findNavController().navigate(R.id.interviewListFragment)
         }
 
         binding.aiInterviewButton.setOnClickListener {
