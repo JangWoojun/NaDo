@@ -5,15 +5,18 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.woojun.nado.data.Interview
 import com.woojun.nado.data.Resume
 
 @TypeConverters(
     TypeConverter::class
 )
 
-@Database(entities = [Resume::class], version = 2)
+@Database(entities = [Resume::class, Interview::class], version = 3)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun resumeDao(): ResumeDAO
+    abstract fun interviewDao(): InterviewDAO
+
 
     companion object {
         private var INSTANCE: AppDatabase? = null
