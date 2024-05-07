@@ -21,7 +21,7 @@
             style="@style/title_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="작성 후 변환"
+            android:text="면접 준비"
             android:textColor="@color/white" />
 
     </LinearLayout>
@@ -40,11 +40,11 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/resume_list"
+        android:id="@+id/interview_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/pdf_button"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
         app:layout_constraintTop_toBottomOf="@+id/name_text" />
 
     <LinearLayout
