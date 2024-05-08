@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.woojun.nado.data.AiInterview
 import com.woojun.nado.data.Interview
 import com.woojun.nado.data.Resume
 
@@ -12,10 +13,12 @@ import com.woojun.nado.data.Resume
     TypeConverter::class
 )
 
-@Database(entities = [Resume::class, Interview::class], version = 3)
+@Database(entities = [Resume::class, Interview::class, AiInterview::class], version = 4)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun resumeDao(): ResumeDAO
     abstract fun interviewDao(): InterviewDAO
+    abstract fun aiInterviewDao(): AiInterviewDAO
+
 
 
     companion object {

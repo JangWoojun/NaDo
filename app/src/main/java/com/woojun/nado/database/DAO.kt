@@ -1,6 +1,7 @@
 package com.woojun.nado.database
 
 import androidx.room.*
+import com.woojun.nado.data.AiInterview
 import com.woojun.nado.data.Interview
 import com.woojun.nado.data.Resume
 
@@ -32,4 +33,19 @@ interface InterviewDAO {
 
     @Delete
     fun deleteInterview(interview: Interview)
+}
+
+@Dao
+interface AiInterviewDAO {
+    @Insert
+    fun aiInsertInterview(aiInterview: AiInterview)
+
+    @Update
+    fun updateAiInterview(aiInterview: AiInterview)
+
+    @Query("SELECT * FROM Interview")
+    fun getAiInterviewList(): MutableList<AiInterview>
+
+    @Delete
+    fun deleteAiInterview(aiInterview: AiInterview)
 }
