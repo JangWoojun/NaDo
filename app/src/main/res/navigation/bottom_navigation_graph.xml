@@ -94,4 +94,9 @@
         android:name="com.woojun.nado.fragment.interview.MyInterviewFragment"
         android:label="fragment_my_interview"
         tools:layout="@layout/fragment_my_interview" />
+    <fragment
+        android:id="@+id/aiInterviewReadyFragment"
+        android:name="com.woojun.nado.fragment.interview.AiInterviewReadyFragment"
+        android:label="fragment_ai_interview_ready"
+        tools:layout="@layout/fragment_ai_interview_ready" />
 </navigation>
