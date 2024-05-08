@@ -82,7 +82,7 @@ class InterviewListFragment : Fragment() {
                             }
                         }
                     } else {
-                        Toast.makeText(requireContext(), "자기소개서를 선택해주세요.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "인터뷰를 선택해주세요.", Toast.LENGTH_SHORT).show()
                     }
                 }
 
