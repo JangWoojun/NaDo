@@ -117,10 +117,4 @@ class AiInterviewFragment : Fragment() {
         })
     }
 
-    fun getDate(): String {
-        val now = LocalDate.now()
-        val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd")
-        return now.format(formatter)
-    }
-
 }

@@ -38,7 +38,7 @@ interface InterviewDAO {
 @Dao
 interface AiInterviewDAO {
     @Insert
-    fun aiInsertInterview(aiInterview: AiInterview)
+    fun insertAiInterview(aiInterview: AiInterview)
 
     @Update
     fun updateAiInterview(aiInterview: AiInterview)
