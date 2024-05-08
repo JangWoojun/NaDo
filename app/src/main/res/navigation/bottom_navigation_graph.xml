@@ -99,4 +99,19 @@
         android:name="com.woojun.nado.fragment.interview.AiInterviewReadyFragment"
         android:label="fragment_ai_interview_ready"
         tools:layout="@layout/fragment_ai_interview_ready" />
+    <fragment
+        android:id="@+id/communityInnerFragment"
+        android:name="com.woojun.nado.fragment.community.CommunityInnerFragment"
+        android:label="fragment_community_inner"
+        tools:layout="@layout/fragment_community_inner" />
+    <fragment
+        android:id="@+id/communityListFragment"
+        android:name="com.woojun.nado.fragment.community.CommunityListFragment"
+        android:label="fragment_community_list"
+        tools:layout="@layout/fragment_community_list" />
+    <fragment
+        android:id="@+id/communityWriteFragment"
+        android:name="com.woojun.nado.fragment.community.CommunityWriteFragment"
+        android:label="fragment_community_write"
+        tools:layout="@layout/fragment_community_write" />
 </navigation>
