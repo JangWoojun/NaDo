@@ -1,13 +1,31 @@
 package com.woojun.nado.fragment.interview
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.otaliastudios.cameraview.CameraListener
+import com.otaliastudios.cameraview.PictureResult
+import com.otaliastudios.cameraview.VideoResult
+import com.otaliastudios.cameraview.controls.Facing
+import com.otaliastudios.cameraview.controls.Mode
 import com.woojun.nado.R
 import com.woojun.nado.databinding.FragmentAiInterviewBinding
-import com.woojun.nado.databinding.FragmentInterviewBinding
+import com.woojun.nado.network.RetrofitAPI
+import com.woojun.nado.network.RetrofitClient
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.io.File
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+
 
 class AiInterviewFragment : Fragment() {
 
@@ -28,12 +46,81 @@ class AiInterviewFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.finishButton.visibility = View.INVISIBLE
+        binding.camera.mode = Mode.VIDEO
+        binding.camera.facing = Facing.FRONT
+
+        binding.micButton.setOnClickListener {
+            if (binding.camera.isTakingVideo) {
+                binding.camera.stopVideo()
+            } else if (binding.camera.mode == Mode.VIDEO) {
+                binding.camera.takeVideo(
+                    File(requireActivity().filesDir, "${System.currentTimeMillis()}.mp4")
+                )
+            }
+        }
+
+        binding.camera.setLifecycleOwner(this@AiInterviewFragment)
+        binding.camera.addCameraListener(object : CameraListener() {
+            override fun onPictureTaken(result: PictureResult) {
+            }
+
+            override fun onVideoTaken(result: VideoResult) {
+                postAnalysisInterview(result.file)
+            }
+
+            override fun onVideoRecordingEnd() {
+                binding.finishButton.visibility = View.VISIBLE
+            }
+
+            override fun onPictureShutter() {
+
+            }
+
+            override fun onVideoRecordingStart() {
+
+            }
+        })
 
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun postAnalysisInterview(file: File) {
+        val requestBody = RequestBody.create(MediaType.parse("video/*"), file)
+        val multipartBody = MultipartBody.Part.createFormData("video", file.name, requestBody)
+
+        val retrofitAPI = RetrofitClient.getInstance().create(RetrofitAPI::class.java)
+        val call: Call<String> = retrofitAPI.postAnalysisInterview(multipartBody)
+
+        call.enqueue(object : Callback<String> {
+            override fun onResponse(
+                call: Call<String>,
+                response: Response<String>
+            ) {
+                if (response.isSuccessful) {
+                    findNavController().navigate(
+                        R.id.aiInterviewResultFragment,
+                        Bundle().apply {
+                            this.putString("content", response.body().toString())
+                        }
+                    )
+                }
+            }
+
+            override fun onFailure(call: Call<String>, t: Throwable) {
+                Toast.makeText(requireContext(), "네트워크 오류, 다시 시도해주세요.", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    fun getDate(): String {
+        val now = LocalDate.now()
+        val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd")
+        return now.format(formatter)
     }
 
 }
