@@ -4,6 +4,8 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +15,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.woojun.nado.R
+import com.woojun.nado.data.CheckspellingResult
 import com.woojun.nado.data.Resume
 import com.woojun.nado.data.Spelling
 import com.woojun.nado.database.AppDatabase
@@ -91,26 +94,35 @@ class SpellingFragment : Fragment() {
 
     private fun checkSpelling(content: String) {
         val retrofitAPI = RetrofitClient.getInstance().create(RetrofitAPI::class.java)
-        val call: Call<String> = retrofitAPI.checkSpelling(Spelling(content))
+        val call: Call<CheckspellingResult> = retrofitAPI.checkSpelling(Spelling(content))
 
-        call.enqueue(object : Callback<String> {
+        call.enqueue(object : Callback<CheckspellingResult> {
             override fun onResponse(
-                call: Call<String>,
-                response: Response<String>
+                call: Call<CheckspellingResult>,
+                response: Response<CheckspellingResult>
             ) {
                 if (response.isSuccessful) {
-                    binding.contentInput.text = decodeUrl(response.body().toString())
+                    binding.contentInput.apply {
+                        this.text = response.body()?.corrected
+
+                        val spannableString = SpannableString(this.text)
+                        response.body()?.changes?.forEach { char ->
+                            spannableString.setSpan(
+                                ForegroundColorSpan(Color.parseColor("#FF5656")),
+                                char.start,
+                                char.end+1,
+                                SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE
+                            )
+                            this.text = spannableString
+                        }
+                    }
                 }
             }
 
-            override fun onFailure(call: Call<String>, t: Throwable) {
+            override fun onFailure(call: Call<CheckspellingResult>, t: Throwable) {
                 Toast.makeText(requireContext(), "네트워크 오류, 다시 시도해주세요.", Toast.LENGTH_SHORT).show()
             }
         })
-    }
-
-    fun decodeUrl(encodedUrl: String): String {
-        return URLDecoder.decode(encodedUrl, StandardCharsets.UTF_8.toString())
     }
 
 }
