@@ -78,9 +78,9 @@ interface RetrofitAPI {
         @Body comment: Comment
     ): Call<Boolean>
 
-    @GET("${BuildConfig.baseUrl}board/delete/{id}")
+    @GET("${BuildConfig.baseUrl}post/delete/{id}")
     fun deleteBoard(
         @Path("id") id: Int,
         @Query("password") password: String
-    )
+    ): Call<Boolean>
 }
