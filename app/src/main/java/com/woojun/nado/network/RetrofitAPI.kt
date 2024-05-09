@@ -6,6 +6,7 @@ import com.woojun.nado.data.BoardList
 import com.woojun.nado.data.CheckspellingResult
 import com.woojun.nado.data.OnlineCourseList
 import com.woojun.nado.data.Pdf
+import com.woojun.nado.data.Post
 import com.woojun.nado.data.Spelling
 import com.woojun.nado.data.TbViewProgram
 import com.woojun.nado.data.Weather
@@ -59,4 +60,9 @@ interface RetrofitAPI {
     fun getBoardList(
         @Query("boardID") boardID: Int
     ): Call<BoardList>
+
+    @POST("${BuildConfig.baseUrl}post/create")
+    fun createPost(
+        @Body post: Post
+    ): Call<Boolean>
 }
