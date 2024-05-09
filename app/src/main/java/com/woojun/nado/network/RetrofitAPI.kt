@@ -4,6 +4,8 @@ import com.woojun.nado.BuildConfig
 import com.woojun.nado.data.Ai
 import com.woojun.nado.data.BoardList
 import com.woojun.nado.data.CheckspellingResult
+import com.woojun.nado.data.Comment
+import com.woojun.nado.data.GetCommentList
 import com.woojun.nado.data.OnlineCourseList
 import com.woojun.nado.data.Pdf
 import com.woojun.nado.data.Post
@@ -65,4 +67,20 @@ interface RetrofitAPI {
     fun createPost(
         @Body post: Post
     ): Call<Boolean>
+
+    @GET("${BuildConfig.baseUrl}comment/get")
+    fun getComment(
+        @Query("postID") postID: Int
+    ): Call<GetCommentList>
+
+    @POST("${BuildConfig.baseUrl}comment/add")
+    fun createComment(
+        @Body comment: Comment
+    ): Call<Boolean>
+
+    @GET("${BuildConfig.baseUrl}board/delete/{id}")
+    fun deleteBoard(
+        @Path("id") id: Int,
+        @Query("password") password: String
+    )
 }
