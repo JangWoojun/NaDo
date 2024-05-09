@@ -30,6 +30,9 @@ class MainActivity : AppCompatActivity() {
         viewModel.loadEducationList {
             Toast.makeText(this@MainActivity, "네트워크 오류, 다시 시도해주세요", Toast.LENGTH_LONG).show()
         }
+        viewModel.loadWeather {
+            Toast.makeText(this@MainActivity, "네트워크 오류, 다시 시도해주세요", Toast.LENGTH_LONG).show()
+        }
 
         navController = findNavController(R.id.nav_host_fragment)
 

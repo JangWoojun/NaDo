@@ -1,15 +1,13 @@
 package com.woojun.nado.database
 
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.woojun.nado.adapter.EducationAdapter
 import com.woojun.nado.data.Education
 import com.woojun.nado.data.Lecture
 import com.woojun.nado.data.OnlineCourseList
 import com.woojun.nado.data.TbViewProgram
+import com.woojun.nado.data.Weather
 import com.woojun.nado.network.RetrofitAPI
 import com.woojun.nado.network.RetrofitClient
 import retrofit2.Call
@@ -25,6 +23,9 @@ class ViewModel : ViewModel() {
 
     private val _educationList = MutableLiveData<MutableList<Education>>()
     private val educationList: LiveData<MutableList<Education>> = _educationList
+
+    private val _weather = MutableLiveData<Weather>()
+    private val weather: LiveData<Weather> = _weather
 
     fun loadOnlineCourse(callback: () -> Unit) {
         val retrofitAPI = RetrofitClient.getInstance().create(RetrofitAPI::class.java)
@@ -100,6 +101,24 @@ class ViewModel : ViewModel() {
         })
     }
 
+    fun loadWeather(callback: () -> Unit) {
+        val retrofitAPI = RetrofitClient.getInstance().create(RetrofitAPI::class.java)
+        val call: Call<Weather> = retrofitAPI.getWeather()
+
+        call.enqueue(object : Callback<Weather> {
+            override fun onResponse(call: Call<Weather>, response: Response<Weather>) {
+                if (response.isSuccessful) {
+                    _weather.value = response.body()
+                }
+            }
+
+            override fun onFailure(call: Call<Weather>, t: Throwable) {
+                callback()
+            }
+        })
+    }
+
+
     fun getOnlineCourseList(): LiveData<MutableList<Lecture>> {
         return onlineCourse
     }
@@ -110,5 +129,9 @@ class ViewModel : ViewModel() {
 
     fun getEducationList(): LiveData<MutableList<Education>> {
         return educationList
+    }
+
+    fun getWeather(): LiveData<Weather> {
+        return weather
     }
 }

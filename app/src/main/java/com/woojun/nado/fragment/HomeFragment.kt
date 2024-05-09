@@ -64,6 +64,11 @@ class HomeFragment : Fragment() {
 
 
         viewModel = ViewModelProvider(requireActivity())[ViewModel::class.java]
+        viewModel.getWeather().observe(viewLifecycleOwner) { weather ->
+            val weatherList = listOf(R.drawable.sun_icon, R.drawable.cloud_icon, R.drawable.rain_icon, R.drawable.snow_icon)
+            binding.weatherImage.setImageResource(weatherList[weather.sky-1])
+            binding.temperatureText.text = weather.temperature
+        }
         viewModel.getOnlineCourseList().observe(viewLifecycleOwner) { apiData ->
             binding.updateList.adapter = UpdateAdapter(apiData)
             binding.updateList.layoutManager = LinearLayoutManager(requireContext())
