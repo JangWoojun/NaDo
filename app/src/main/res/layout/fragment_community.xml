@@ -236,8 +236,8 @@
         </LinearLayout>
 
         <androidx.cardview.widget.CardView
-            android:layout_marginEnd="27dp"
-            android:layout_marginTop="64dp"
+            android:layout_marginEnd="26dp"
+            android:layout_marginTop="69dp"
             android:id="@+id/tooltip_button"
             android:layout_width="60dp"
             android:layout_height="60dp"
@@ -263,11 +263,11 @@
         <TextView
             android:layout_marginEnd="18dp"
             android:layout_marginBottom="8dp"
-            style="@style/button_text"
+            style="@style/medium_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="궁금한게 있으신가요? >"
-            android:textColor="@color/black"
+            android:text="모르는 것이 있을 때 ? 클릭!"
+            android:textColor="@color/gray_4"
             app:layout_constraintBottom_toBottomOf="@+id/tooltip_button"
             app:layout_constraintEnd_toStartOf="@+id/tooltip_button" />
 
