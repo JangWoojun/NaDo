@@ -119,7 +119,11 @@ class StudyFragment : Fragment() {
                 }
             }
 
-            pageEndIndex = lectureList.size - 1
+            pageEndIndex = if (lectureList.isNotEmpty()){
+                lectureList.size - 1
+            } else {
+                0
+            }
             pageIndex = 0
 
             if (lectureList.size != 0) {
@@ -138,7 +142,6 @@ class StudyFragment : Fragment() {
                 }
             }
 
-            binding.lectureList.adapter = LectureAdapter(apiData.subList(0, 4))
             binding.lectureList.layoutManager = LinearLayoutManager(requireContext())
 
             binding.orderLatestButton.setOnClickListener {
