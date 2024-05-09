@@ -43,7 +43,7 @@ interface AiInterviewDAO {
     @Update
     fun updateAiInterview(aiInterview: AiInterview)
 
-    @Query("SELECT * FROM Interview")
+    @Query("SELECT * FROM AiInterview")
     fun getAiInterviewList(): MutableList<AiInterview>
 
     @Delete
