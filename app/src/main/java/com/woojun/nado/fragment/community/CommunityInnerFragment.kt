@@ -1,14 +1,24 @@
 package com.woojun.nado.fragment.community
 
+import android.app.Dialog
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import android.view.WindowManager
+import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
+import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.woojun.nado.R
 import com.woojun.nado.adapter.CommentAdapter
@@ -64,7 +74,35 @@ class CommunityInnerFragment : Fragment() {
         }
 
         binding.removeButton.setOnClickListener {
+            val customDialog = Dialog(requireContext())
 
+            customDialog.setContentView(R.layout.password_dialog)
+
+            customDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            customDialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+
+            customDialog.findViewById<ConstraintLayout>(R.id.send_button).setOnClickListener {
+                if (customDialog.findViewById<EditText>(R.id.password_input).text.isNotEmpty()) {
+                    deleteBoard(board.id, customDialog.findViewById<EditText>(R.id.password_input).text.toString()) {
+                        if (it) {
+                            findNavController().navigate(
+                                R.id.communityListFragment,
+                                Bundle().apply {
+                                    putInt("category", board.board)
+                                }
+                            )
+                            Toast.makeText(requireContext(), "삭제 완료", Toast.LENGTH_SHORT).show()
+                            customDialog.dismiss()
+                        } else {
+                            Toast.makeText(requireContext(), "비밀번호가 다릅니다.", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                } else {
+                    Toast.makeText(requireContext(), "비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            customDialog.show()
         }
 
         getComment(board.id) { list ->
@@ -90,6 +128,25 @@ class CommunityInnerFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun deleteBoard(id: Int, password: String, callback: (Boolean) -> Unit) {
+        val retrofitAPI = RetrofitClient.getInstance().create(RetrofitAPI::class.java)
+        val call: Call<Boolean> = retrofitAPI.deleteBoard(id, password)
+
+        call.enqueue(object : Callback<Boolean> {
+            override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
+                if (response.isSuccessful) {
+                    callback(response.body()!!)
+                } else {
+                    Toast.makeText(requireContext(), "네트워크 오류, 다시 시도해주세요", Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onFailure(call: Call<Boolean>, t: Throwable) {
+                Toast.makeText(requireContext(), "네트워크 오류, 다시 시도해주세요", Toast.LENGTH_LONG).show()
+            }
+        })
     }
 
     private fun getComment(id: Int, callback: (GetCommentList) -> Unit) {
