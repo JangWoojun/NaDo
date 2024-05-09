@@ -98,6 +98,7 @@ class CommunityListFragment : Fragment() {
 
             if (boardList.size != 0) {
                 binding.communityList.adapter = CommunityAdapter(boardList[pageIndex].toMutableList())
+                binding.communityList.layoutManager = LinearLayoutManager(requireContext())
             }
         }
 
