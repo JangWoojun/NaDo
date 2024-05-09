@@ -2,6 +2,7 @@ package com.woojun.nado
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -54,19 +55,36 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.home -> {
                     binding.homeIcon.setImageResource(R.drawable.select_home_icon)
+                    navigationMode(false)
                 }
                 R.id.study -> {
                     binding.studyIcon.setImageResource(R.drawable.select_study_icon)
+                    navigationMode(false)
                 }
                 R.id.support -> {
                     binding.supportIcon.setImageResource(R.drawable.select_support_icon)
+                    navigationMode(false)
                 }
                 R.id.community -> {
                     binding.communityIcon.setImageResource(R.drawable.select_community_icon)
+                    navigationMode(false)
+                }
+                else -> {
+                    navigationMode(true)
                 }
             }
         }
 
+    }
+
+    private fun navigationMode(isGone: Boolean) {
+        if (isGone) {
+            binding.line.visibility = View.GONE
+            binding.bottomNavigation.visibility = View.GONE
+        } else {
+            binding.line.visibility = View.VISIBLE
+            binding.bottomNavigation.visibility = View.VISIBLE
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
