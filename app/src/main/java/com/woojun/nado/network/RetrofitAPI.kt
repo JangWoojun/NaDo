@@ -7,6 +7,7 @@ import com.woojun.nado.data.OnlineCourseList
 import com.woojun.nado.data.Pdf
 import com.woojun.nado.data.Spelling
 import com.woojun.nado.data.TbViewProgram
+import com.woojun.nado.data.Weather
 import okhttp3.MultipartBody
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -48,4 +49,7 @@ interface RetrofitAPI {
     fun postAnalysisInterview(
         @Part file: MultipartBody.Part,
     ): Call<String>
+
+    @GET("${BuildConfig.baseUrl}weather")
+    fun getWeather(): Call<Weather>
 }
