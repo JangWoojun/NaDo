@@ -44,7 +44,7 @@ interface RetrofitAPI {
     ): Call<String>
 
     @Multipart
-    @POST("")
+    @POST("${BuildConfig.baseUrl}interview/analysis")
     fun postAnalysisInterview(
         @Part file: MultipartBody.Part,
     ): Call<String>
