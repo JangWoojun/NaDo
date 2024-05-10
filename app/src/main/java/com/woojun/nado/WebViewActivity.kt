@@ -1,8 +1,11 @@
 package com.woojun.nado
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.webkit.WebChromeClient
+import android.webkit.WebViewClient
+import androidx.appcompat.app.AppCompatActivity
 import com.woojun.nado.databinding.ActivityWebViewBinding
+
 
 class WebViewActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWebViewBinding
@@ -13,5 +16,6 @@ class WebViewActivity : AppCompatActivity() {
 
         binding.webView.loadUrl(intent.getStringExtra("url")!!)
         binding.webView.settings.domStorageEnabled = true
+        binding.webView.settings.javaScriptEnabled = true
     }
 }
