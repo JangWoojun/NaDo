@@ -114,7 +114,7 @@ class AiWriteFragment : Fragment() {
                         this.setText(response.body().toString())
                         this.text.setSpan(
                             ForegroundColorSpan(
-                                Color.parseColor("FF5656")),
+                                Color.parseColor("#FF5656")),
                             0,
                             response.body().toString().length,
                             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
