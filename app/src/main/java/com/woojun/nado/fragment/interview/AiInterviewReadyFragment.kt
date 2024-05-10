@@ -2,6 +2,7 @@ package com.woojun.nado.fragment.interview
 
 import android.app.Dialog
 import android.graphics.Color
+import android.graphics.Paint
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Handler
@@ -36,6 +37,7 @@ class AiInterviewReadyFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         var index = 0
+        binding.backButton.paintFlags = Paint.UNDERLINE_TEXT_FLAG
 
         binding.tooltipButton.setOnClickListener {
             val customDialog = Dialog(requireContext())
@@ -65,6 +67,7 @@ class AiInterviewReadyFragment : Fragment() {
                 binding.doText.visibility = View.INVISIBLE
                 binding.tooltipButton.visibility = View.INVISIBLE
                 binding.tooltipText.visibility = View.INVISIBLE
+                binding.backButton.visibility = View.INVISIBLE
 
                 binding.titleText.apply {
                     this.text = "이제,\n면접을 시작합니다."
