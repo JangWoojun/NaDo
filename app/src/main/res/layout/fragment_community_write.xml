@@ -224,21 +224,23 @@
             app:cardElevation="0dp"
             android:layout_marginBottom="33dp"
             android:id="@+id/write_button"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="52dp"
             app:cardBackgroundColor="@color/primary"
             app:cardCornerRadius="17dp"
+            android:layout_marginHorizontal="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView21">
 
             <LinearLayout
+                android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="75dp"
-                android:layout_marginVertical="10dp"
+                android:layout_marginVertical="14dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 

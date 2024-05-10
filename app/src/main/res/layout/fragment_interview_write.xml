@@ -19,7 +19,7 @@
             style="@style/title_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="AI 자동 완성"
+            android:text="자기소개서 작성"
             android:textColor="@color/white" />
 
     </LinearLayout>

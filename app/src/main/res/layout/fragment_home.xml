@@ -254,7 +254,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="부제목"
+                    android:text="로딩중"
                     android:textColor="@color/black" />
 
                 <TextView
@@ -267,7 +267,7 @@
                     android:layout_marginHorizontal="8dp"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="8dp"
-                    android:text="제목"
+                    android:text="로딩중"
                     android:textColor="@color/black" />
 
             </LinearLayout>
@@ -315,7 +315,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="부제목"
+                    android:text="로딩중"
                     android:textColor="@color/black" />
 
                 <TextView
@@ -328,7 +328,7 @@
                     android:layout_marginHorizontal="8dp"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="8dp"
-                    android:text="제목"
+                    android:text="로딩중"
                     android:textColor="@color/black" />
             </LinearLayout>
 
