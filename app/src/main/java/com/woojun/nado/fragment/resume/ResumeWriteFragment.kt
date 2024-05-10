@@ -62,7 +62,10 @@ class ResumeWriteFragment : Fragment() {
                     resumeDao?.insertResume(Resume(name = name ?: "", content = binding.contentInput.text.toString()))
 
                     withContext(Dispatchers.Main) {
-                        findNavController().navigate(R.id.resumeListFragment)
+                        findNavController().apply {
+                            popBackStack(R.id.resumeListFragment, true)
+                            navigate(R.id.resumeListFragment)
+                        }
                     }
                 }
             } else {

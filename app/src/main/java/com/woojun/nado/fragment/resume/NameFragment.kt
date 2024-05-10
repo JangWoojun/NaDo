@@ -56,7 +56,10 @@ class NameFragment : Fragment() {
         binding.button2.setOnClickListener {
             if (binding.nameInput.text.isNotEmpty()) {
                 saveUserName(requireContext(), binding.nameInput.text.toString())
-                findNavController().navigate(R.id.resumeWriteFragment)
+                findNavController().apply {
+                    popBackStack(R.id.resumeWriteFragment, true)
+                    navigate(R.id.resumeWriteFragment)
+                }
             } else {
                 Toast.makeText(requireContext(), "이름을 입력해주세요.", Toast.LENGTH_SHORT).show()
             }

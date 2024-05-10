@@ -72,12 +72,15 @@ class CommunityWriteFragment : Fragment() {
                 writePost(
                     Post(binding.titleInput.text.toString(), binding.contentInput.text.toString(), category, binding.passwordInput.text.toString())
                 ) {
-                    findNavController().navigate(
-                        R.id.communityListFragment,
-                        Bundle().apply {
-                            putInt("category", category)
-                        }
-                    )
+                    findNavController().apply {
+                        popBackStack(R.id.communityListFragment, true)
+                        navigate(
+                            R.id.communityListFragment,
+                            Bundle().apply {
+                                putInt("category", category)
+                            }
+                        )
+                    }
                 }
             } else {
                 Toast.makeText(requireContext(), "모든 칸을 채워주세요.", Toast.LENGTH_SHORT).show()
