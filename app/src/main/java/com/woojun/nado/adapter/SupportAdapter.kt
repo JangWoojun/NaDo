@@ -15,7 +15,7 @@ class SupportAdapter(private val supportList: MutableList<Resume>): RecyclerView
 
     fun removeItem(index: Int) {
         supportList.removeAt(index)
-        notifyItemChanged(index)
+        notifyItemRemoved(index)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SupportViewHolder {
@@ -36,22 +36,19 @@ class SupportAdapter(private val supportList: MutableList<Resume>): RecyclerView
 
         fun bind(support: Resume) {
             binding.textView.text = support.content
-            binding.checkbox.isChecked = support.isSelected
+            binding.checkbox.isChecked = adapterPosition == index
 
             binding.checkbox.setOnClickListener {
-                support.isSelected = !support.isSelected
-                notifyItemChanged(adapterPosition)
-                updateCheckedItems(adapterPosition)
-            }
-        }
-    }
+                val previousIndex = index
+                index = if (index == adapterPosition) {
+                    null
+                } else {
+                    adapterPosition
+                }
 
-    private fun updateCheckedItems(adapterPosition: Int) {
-        val checkedCount = supportList.count { it.isSelected }
-        index = if (checkedCount == 0) {
-            null
-        } else {
-            adapterPosition
+                previousIndex?.let { notifyItemChanged(it) }
+                notifyItemChanged(adapterPosition)
+            }
         }
     }
 

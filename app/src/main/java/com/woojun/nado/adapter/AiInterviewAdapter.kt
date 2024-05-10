@@ -15,7 +15,7 @@ class AiInterviewAdapter(private val aiInterviewList: MutableList<AiInterview>):
 
     fun removeItem(index: Int) {
         aiInterviewList.removeAt(index)
-        notifyItemChanged(index)
+        notifyItemRemoved(index)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AiInterviewViewHolder {
@@ -36,24 +36,23 @@ class AiInterviewAdapter(private val aiInterviewList: MutableList<AiInterview>):
 
         fun bind(aiInterview: AiInterview) {
             binding.textView.text = aiInterview.content
-            binding.checkbox.isChecked = aiInterview.isSelected
             binding.dateText.text = aiInterview.date
+            binding.checkbox.isChecked = adapterPosition == index
 
             binding.checkbox.setOnClickListener {
-                aiInterview.isSelected = !aiInterview.isSelected
+                val previousIndex = index
+                index = if (index == adapterPosition) {
+                    null
+                } else {
+                    adapterPosition
+                }
+
+                previousIndex?.let { notifyItemChanged(it) }
                 notifyItemChanged(adapterPosition)
-                updateCheckedItems(adapterPosition)
             }
         }
     }
 
-    private fun updateCheckedItems(adapterPosition: Int) {
-        val checkedCount = aiInterviewList.count { it.isSelected }
-        index = if (checkedCount == 0) {
-            null
-        } else {
-            adapterPosition
-        }
-    }
+
 
 }

@@ -15,7 +15,7 @@ class InterviewAdapter(private val interviewList: MutableList<Interview>): Recyc
 
     fun removeItem(index: Int) {
         interviewList.removeAt(index)
-        notifyItemChanged(index)
+        notifyItemRemoved(index)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InterviewViewHolder {
@@ -36,23 +36,21 @@ class InterviewAdapter(private val interviewList: MutableList<Interview>): Recyc
 
         fun bind(interview: Interview) {
             binding.textView.text = "${interview.question} ${interview.content}"
-            binding.checkbox.isChecked = interview.isSelected
+            binding.checkbox.isChecked = adapterPosition == index
 
             binding.checkbox.setOnClickListener {
-                interview.isSelected = !interview.isSelected
+                val previousIndex = index
+                index = if (index == adapterPosition) {
+                    null
+                } else {
+                    adapterPosition
+                }
+
+                previousIndex?.let { notifyItemChanged(it) }
                 notifyItemChanged(adapterPosition)
-                updateCheckedItems(adapterPosition)
             }
         }
     }
 
-    private fun updateCheckedItems(adapterPosition: Int) {
-        val checkedCount = interviewList.count { it.isSelected }
-        index = if (checkedCount == 0) {
-            null
-        } else {
-            adapterPosition
-        }
-    }
 
 }
