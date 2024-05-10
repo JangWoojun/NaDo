@@ -50,7 +50,7 @@ class SplashActivity : AppCompatActivity() {
         }
 
         CoroutineScope(Dispatchers.Main).launch {
-            delay(1500)
+            delay(500)
             startActivity(Intent(this@SplashActivity, MainActivity::class.java))
             finishAffinity()
         }
