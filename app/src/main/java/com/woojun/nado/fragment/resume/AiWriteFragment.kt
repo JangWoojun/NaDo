@@ -25,6 +25,7 @@ import com.woojun.nado.databinding.FragmentAiWriteBinding
 import com.woojun.nado.databinding.FragmentSpellingBinding
 import com.woojun.nado.network.RetrofitAPI
 import com.woojun.nado.network.RetrofitClient
+import com.woojun.nado.util.Utils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -63,6 +64,16 @@ class AiWriteFragment : Fragment() {
 
         binding.button1.setOnClickListener {
             viewChange(false)
+            binding.contentInput.apply {
+                this.setText(this.text.toString())
+                this.text.setSpan(
+                    ForegroundColorSpan(
+                        Color.parseColor("#000000")),
+                    0,
+                    this.text.toString().length,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }
         }
 
         binding.button2.setOnClickListener {
@@ -103,6 +114,9 @@ class AiWriteFragment : Fragment() {
     private fun checkSpelling(content: String) {
         val retrofitAPI = RetrofitClient.getInstance().create(RetrofitAPI::class.java)
         val call: Call<String> = retrofitAPI.generateResumeGpt(Ai(content))
+        val (loadingDialog, setDialogText) = Utils.createLoadingDialog(requireContext())
+        loadingDialog.show()
+        setDialogText("AI 작성중...")
 
         call.enqueue(object : Callback<String> {
             override fun onResponse(
@@ -121,9 +135,11 @@ class AiWriteFragment : Fragment() {
                         )
                     }
                 }
+                loadingDialog.dismiss()
             }
 
             override fun onFailure(call: Call<String>, t: Throwable) {
+                loadingDialog.dismiss()
                 Toast.makeText(requireContext(), "네트워크 오류, 다시 시도해주세요.", Toast.LENGTH_SHORT).show()
             }
         })
