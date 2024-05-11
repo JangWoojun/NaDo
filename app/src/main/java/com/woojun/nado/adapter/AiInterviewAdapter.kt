@@ -1,8 +1,11 @@
 package com.woojun.nado.adapter
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.woojun.nado.R
 import com.woojun.nado.data.AiInterview
 import com.woojun.nado.databinding.SupportItemBinding
 
@@ -20,7 +23,17 @@ class AiInterviewAdapter(private val aiInterviewList: MutableList<AiInterview>):
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AiInterviewViewHolder {
         val binding = SupportItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return AiInterviewViewHolder(binding)
+        return AiInterviewViewHolder(binding).also { handler ->
+            binding.root.setOnClickListener {
+                binding.root.findNavController().navigate(
+                    R.id.adapterInnerFragment,
+                    Bundle().apply {
+                        this.putString("title", "AI 면접 결과")
+                        this.putString("content", aiInterviewList[handler.adapterPosition].content)
+                    }
+                )
+            }
+        }
     }
 
     override fun getItemCount(): Int {

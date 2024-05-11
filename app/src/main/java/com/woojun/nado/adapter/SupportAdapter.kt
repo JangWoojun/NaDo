@@ -1,8 +1,11 @@
 package com.woojun.nado.adapter
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.woojun.nado.R
 import com.woojun.nado.data.Resume
 import com.woojun.nado.databinding.SupportItemBinding
 
@@ -20,7 +23,20 @@ class SupportAdapter(private val supportList: MutableList<Resume>): RecyclerView
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SupportViewHolder {
         val binding = SupportItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return SupportViewHolder(binding)
+        return SupportViewHolder(binding).also { handler ->
+            binding.root.setOnClickListener {
+                binding.root.findNavController().navigate(
+                    R.id.adapterInnerFragment,
+                    Bundle().apply {
+                        this.putString(
+                            "title",
+                            supportList[handler.adapterPosition].name
+                        )
+                        this.putString("content", supportList[handler.adapterPosition].content)
+                    }
+                )
+            }
+        }
     }
 
     override fun getItemCount(): Int {

@@ -1,8 +1,11 @@
 package com.woojun.nado.adapter
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.woojun.nado.R
 import com.woojun.nado.data.Interview
 import com.woojun.nado.databinding.InterviewItemBinding
 
@@ -20,7 +23,17 @@ class InterviewAdapter(private val interviewList: MutableList<Interview>): Recyc
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InterviewViewHolder {
         val binding = InterviewItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return InterviewViewHolder(binding)
+        return InterviewViewHolder(binding).also { handler ->
+            binding.root.setOnClickListener {
+                binding.root.findNavController().navigate(
+                    R.id.adapterInnerFragment,
+                    Bundle().apply {
+                        this.putString("title", "Q. ${interviewList[handler.adapterPosition].question}")
+                        this.putString("content", interviewList[handler.adapterPosition].content)
+                    }
+                )
+            }
+        }
     }
 
     override fun getItemCount(): Int {
