@@ -91,7 +91,7 @@ class AiInterviewFragment : Fragment() {
     private fun postAnalysisInterview(file: File) {
         val (loadingDialog, setDialogText) = Utils.createLoadingDialog(requireContext())
         loadingDialog.show()
-        setDialogText("AI 분석중")
+        setDialogText("AI 분석 중")
 
         val requestBody = RequestBody.create(MediaType.parse("video/*"), file)
         val multipartBody = MultipartBody.Part.createFormData("file", file.name, requestBody)

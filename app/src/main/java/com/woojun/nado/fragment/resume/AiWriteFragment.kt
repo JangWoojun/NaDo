@@ -116,7 +116,7 @@ class AiWriteFragment : Fragment() {
         val call: Call<String> = retrofitAPI.generateResumeGpt(Ai(content))
         val (loadingDialog, setDialogText) = Utils.createLoadingDialog(requireContext())
         loadingDialog.show()
-        setDialogText("AI 작성중...")
+        setDialogText("AI 작성 중...")
 
         call.enqueue(object : Callback<String> {
             override fun onResponse(
