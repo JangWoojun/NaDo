@@ -31,7 +31,7 @@
         tools:layout="@layout/fragment_ai_write" />
     <fragment
         android:id="@+id/nameFragment"
-        android:name="com.woojun.nado.fragment.resume.NameFragment"
+        android:name="com.woojun.nado.fragment.NameFragment"
         android:label="fragment_name"
         tools:layout="@layout/fragment_name" />
     <fragment

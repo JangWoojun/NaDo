@@ -1,4 +1,4 @@
-package com.woojun.nado.fragment.resume
+package com.woojun.nado.fragment
 
 import android.Manifest
 import android.content.Context.INPUT_METHOD_SERVICE
