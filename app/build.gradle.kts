@@ -22,7 +22,7 @@ android {
         applicationId = "com.woojun.nado"
         minSdk = 29
         targetSdk = 34
-        versionCode = 3
+        versionCode = 6
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
