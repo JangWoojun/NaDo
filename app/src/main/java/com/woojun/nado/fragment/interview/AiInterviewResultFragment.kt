@@ -52,6 +52,7 @@ class AiInterviewResultFragment : Fragment() {
                 aiInterviewDao?.insertAiInterview(AiInterview(content = content, date = getDate()))
 
                 withContext(Dispatchers.Main) {
+                    findNavController().popBackStack()
                     findNavController().navigate(R.id.myInterviewFragment)
                 }
             }
@@ -63,7 +64,7 @@ class AiInterviewResultFragment : Fragment() {
         _binding = null
     }
 
-    fun getDate(): String {
+    private fun getDate(): String {
         val now = LocalDate.now()
         val formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd")
         return now.format(formatter)
