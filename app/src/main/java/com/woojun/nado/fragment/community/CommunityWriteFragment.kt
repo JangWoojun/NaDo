@@ -129,6 +129,7 @@ class CommunityWriteFragment : Fragment() {
         override fun onBufferReceived(buffer: ByteArray?) {}
 
         override fun onEndOfSpeech() {
+            isStart = !isStart
             Toast.makeText(requireContext(), "듣기 종료", Toast.LENGTH_SHORT).show()
         }
 

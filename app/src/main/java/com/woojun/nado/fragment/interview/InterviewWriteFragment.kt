@@ -62,6 +62,7 @@ class InterviewWriteFragment : Fragment() {
                 interviewDao?.insertInterview(Interview(question = question ?: "", content = binding.contentInput.text.toString()))
 
                 withContext(Dispatchers.Main) {
+                    findNavController().popBackStack()
                     findNavController().navigate(R.id.interviewListFragment)
                 }
             }
@@ -109,6 +110,7 @@ class InterviewWriteFragment : Fragment() {
         override fun onBufferReceived(buffer: ByteArray?) {}
 
         override fun onEndOfSpeech() {
+            isStart = !isStart
             Toast.makeText(requireContext(), "듣기 종료", Toast.LENGTH_SHORT).show()
         }
 
