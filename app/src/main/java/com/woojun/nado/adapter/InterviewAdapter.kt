@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.woojun.nado.data.Interview
-import com.woojun.nado.databinding.SupportItemBinding
+import com.woojun.nado.databinding.InterviewItemBinding
 
 class InterviewAdapter(private val interviewList: MutableList<Interview>): RecyclerView.Adapter<InterviewAdapter.InterviewViewHolder>() {
     private var index: Int? = null
@@ -19,7 +19,7 @@ class InterviewAdapter(private val interviewList: MutableList<Interview>): Recyc
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InterviewViewHolder {
-        val binding = SupportItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = InterviewItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return InterviewViewHolder(binding)
     }
 
@@ -31,11 +31,12 @@ class InterviewAdapter(private val interviewList: MutableList<Interview>): Recyc
         holder.bind(interviewList[position])
     }
 
-    inner class InterviewViewHolder(private val binding: SupportItemBinding):
+    inner class InterviewViewHolder(private val binding: InterviewItemBinding):
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(interview: Interview) {
-            binding.textView.text = "${interview.question} ${interview.content}"
+            binding.textView.text = "Q. ${interview.question}"
+            binding.contentText.text = "${interview.content}"
             binding.checkbox.isChecked = adapterPosition == index
 
             binding.checkbox.setOnClickListener {
