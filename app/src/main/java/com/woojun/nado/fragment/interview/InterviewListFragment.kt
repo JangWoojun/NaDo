@@ -70,6 +70,7 @@ class InterviewListFragment : Fragment() {
 
                 binding.button1.setOnClickListener {
                     findNavController().popBackStack()
+                    findNavController().navigate(R.id.interviewReadyFragment)
                 }
                 binding.button2.setOnClickListener {
                     if (adapter.getIndex() != null) {
