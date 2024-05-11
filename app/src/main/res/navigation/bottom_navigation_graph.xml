@@ -114,4 +114,9 @@
         android:name="com.woojun.nado.fragment.community.CommunityWriteFragment"
         android:label="fragment_community_write"
         tools:layout="@layout/fragment_community_write" />
+    <fragment
+        android:id="@+id/adapterInnerFragment"
+        android:name="com.woojun.nado.fragment.AdapterInnerFragment"
+        android:label="fragment_adapter_inner"
+        tools:layout="@layout/fragment_adapter_inner" />
 </navigation>
