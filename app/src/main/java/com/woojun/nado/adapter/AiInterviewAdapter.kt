@@ -7,7 +7,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.woojun.nado.R
 import com.woojun.nado.data.AiInterview
-import com.woojun.nado.databinding.SupportItemBinding
+import com.woojun.nado.databinding.AiInterviewItemBinding
 
 class AiInterviewAdapter(private val aiInterviewList: MutableList<AiInterview>): RecyclerView.Adapter<AiInterviewAdapter.AiInterviewViewHolder>() {
     private var index: Int? = null
@@ -22,7 +22,7 @@ class AiInterviewAdapter(private val aiInterviewList: MutableList<AiInterview>):
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AiInterviewViewHolder {
-        val binding = SupportItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = AiInterviewItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return AiInterviewViewHolder(binding).also { handler ->
             binding.root.setOnClickListener {
                 binding.root.findNavController().navigate(
@@ -44,7 +44,7 @@ class AiInterviewAdapter(private val aiInterviewList: MutableList<AiInterview>):
         holder.bind(aiInterviewList[position])
     }
 
-    inner class AiInterviewViewHolder(private val binding: SupportItemBinding):
+    inner class AiInterviewViewHolder(private val binding: AiInterviewItemBinding):
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(aiInterview: AiInterview) {
