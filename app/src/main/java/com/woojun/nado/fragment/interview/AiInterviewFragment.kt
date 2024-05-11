@@ -91,7 +91,7 @@ class AiInterviewFragment : Fragment() {
 
     private fun postAnalysisInterview(file: File) {
         val requestBody = RequestBody.create(MediaType.parse("video/*"), file)
-        val multipartBody = MultipartBody.Part.createFormData("video", file.name, requestBody)
+        val multipartBody = MultipartBody.Part.createFormData("file", file.name, requestBody)
 
         val retrofitAPI = RetrofitClient.getInstance().create(RetrofitAPI::class.java)
         val call: Call<String> = retrofitAPI.postAnalysisInterview(multipartBody)
