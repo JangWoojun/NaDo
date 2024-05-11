@@ -16,6 +16,7 @@ import com.woojun.nado.R
 import com.woojun.nado.databinding.FragmentAiInterviewBinding
 import com.woojun.nado.network.RetrofitAPI
 import com.woojun.nado.network.RetrofitClient
+import com.woojun.nado.util.Utils
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -23,8 +24,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 
 
 class AiInterviewFragment : Fragment() {
@@ -90,6 +89,10 @@ class AiInterviewFragment : Fragment() {
     }
 
     private fun postAnalysisInterview(file: File) {
+        val (loadingDialog, setDialogText) = Utils.createLoadingDialog(requireContext())
+        loadingDialog.show()
+        setDialogText("AI 분석중")
+
         val requestBody = RequestBody.create(MediaType.parse("video/*"), file)
         val multipartBody = MultipartBody.Part.createFormData("file", file.name, requestBody)
 
@@ -102,17 +105,24 @@ class AiInterviewFragment : Fragment() {
                 response: Response<String>
             ) {
                 if (response.isSuccessful) {
-                    findNavController().navigate(
-                        R.id.aiInterviewResultFragment,
-                        Bundle().apply {
-                            this.putString("content", response.body().toString())
-                        }
-                    )
+                    findNavController().apply {
+                        popBackStack()
+                        navigate(
+                            R.id.aiInterviewResultFragment,
+                            Bundle().apply {
+                                this.putString("content", response.body().toString())
+                            }
+                        )
+                    }
+                } else {
+                    Toast.makeText(requireContext(), "네트워크 오류, 다시 시도해주세요.", Toast.LENGTH_SHORT).show()
                 }
+                loadingDialog.dismiss()
             }
 
             override fun onFailure(call: Call<String>, t: Throwable) {
                 Toast.makeText(requireContext(), "네트워크 오류, 다시 시도해주세요.", Toast.LENGTH_SHORT).show()
+                loadingDialog.dismiss()
             }
         })
     }
