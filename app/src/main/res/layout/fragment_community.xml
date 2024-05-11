@@ -75,21 +75,23 @@
             app:layout_constraintTop_toBottomOf="@+id/textView9">
 
             <LinearLayout
+                android:layout_marginHorizontal="26dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
+                    android:layout_weight="1"
                     android:id="@+id/button1"
-                    android:layout_width="144dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:cardBackgroundColor="@color/primary"
                     app:cardCornerRadius="18dp"
                     app:cardElevation="0dp">
 
                     <TextView
-                        style="@style/title_text"
+                        style="@style/sub_title_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -106,14 +108,15 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/button2"
-                    android:layout_width="144dp"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:cardBackgroundColor="@color/primary"
                     app:cardCornerRadius="18dp"
                     app:cardElevation="0dp">
 
                     <TextView
-                        style="@style/title_text"
+                        style="@style/sub_title_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -127,6 +130,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:layout_marginHorizontal="26dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="13dp"
@@ -135,14 +139,15 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/button3"
-                    android:layout_width="144dp"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:cardBackgroundColor="@color/primary"
                     app:cardCornerRadius="18dp"
                     app:cardElevation="0dp">
 
                     <TextView
-                        style="@style/title_text"
+                        style="@style/sub_title_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -159,14 +164,15 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/button4"
-                    android:layout_width="144dp"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:cardBackgroundColor="@color/primary"
                     app:cardCornerRadius="18dp"
                     app:cardElevation="0dp">
 
                     <TextView
-                        style="@style/title_text"
+                        style="@style/sub_title_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -180,6 +186,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:layout_marginHorizontal="26dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="13dp"
@@ -188,14 +195,15 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/button5"
-                    android:layout_width="144dp"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:cardBackgroundColor="@color/primary"
                     app:cardCornerRadius="18dp"
                     app:cardElevation="0dp">
 
                     <TextView
-                        style="@style/title_text"
+                        style="@style/sub_title_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -212,14 +220,15 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/button6"
-                    android:layout_width="144dp"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:cardBackgroundColor="@color/primary"
                     app:cardCornerRadius="18dp"
                     app:cardElevation="0dp">
 
                     <TextView
-                        style="@style/title_text"
+                        style="@style/sub_title_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
