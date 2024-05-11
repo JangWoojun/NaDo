@@ -12,6 +12,7 @@ import android.view.Window
 import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import com.woojun.nado.R
+import com.woojun.nado.database.Preferences
 import com.woojun.nado.databinding.FragmentInterviewBinding
 import com.woojun.nado.util.ToolTip
 
@@ -67,15 +68,42 @@ class InterviewFragment : Fragment() {
         }
 
         binding.interviewReadyButton.setOnClickListener {
-            findNavController().navigate(R.id.interviewReadyFragment)
+            if (Preferences.loadUserName(requireContext()) != null){
+                findNavController().navigate(R.id.interviewReadyFragment)
+            } else {
+                findNavController().navigate(
+                    R.id.nameFragment,
+                    Bundle().apply {
+                        this.putInt("nav", R.id.interviewReadyFragment)
+                    }
+                )
+            }
         }
 
         binding.aiInterviewButton.setOnClickListener {
-            findNavController().navigate(R.id.aiInterviewReadyFragment)
+            if (Preferences.loadUserName(requireContext()) != null){
+                findNavController().navigate(R.id.aiInterviewReadyFragment)
+            } else {
+                findNavController().navigate(
+                    R.id.nameFragment,
+                    Bundle().apply {
+                        this.putInt("nav", R.id.aiInterviewReadyFragment)
+                    }
+                )
+            }
         }
 
         binding.myInterviewButton.setOnClickListener {
-            findNavController().navigate(R.id.myInterviewFragment)
+            if (Preferences.loadUserName(requireContext()) != null){
+                findNavController().navigate(R.id.myInterviewFragment)
+            } else {
+                findNavController().navigate(
+                    R.id.nameFragment,
+                    Bundle().apply {
+                        this.putInt("nav", R.id.myInterviewFragment)
+                    }
+                )
+            }
         }
     }
 

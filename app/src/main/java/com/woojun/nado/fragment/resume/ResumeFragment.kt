@@ -117,7 +117,16 @@ class ResumeFragment : Fragment() {
         }
 
         binding.aiButton.setOnClickListener {
-            findNavController().navigate(R.id.aiWriteFragment)
+            if (loadUserName(requireContext()) != null){
+                findNavController().navigate(R.id.aiWriteFragment)
+            } else {
+                findNavController().navigate(
+                    R.id.nameFragment,
+                    Bundle().apply {
+                        this.putInt("nav", R.id.aiWriteFragment)
+                    }
+                )
+            }
         }
 
     }

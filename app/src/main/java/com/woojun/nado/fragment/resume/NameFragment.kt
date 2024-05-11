@@ -56,9 +56,16 @@ class NameFragment : Fragment() {
         binding.button2.setOnClickListener {
             if (binding.nameInput.text.isNotEmpty()) {
                 saveUserName(requireContext(), binding.nameInput.text.toString())
-                findNavController().apply {
-                    popBackStack(R.id.resumeWriteFragment, true)
-                    navigate(R.id.resumeWriteFragment)
+                if (arguments?.getInt("nav") == null) {
+                    findNavController().apply {
+                        popBackStack(R.id.resumeWriteFragment, true)
+                        navigate(R.id.resumeWriteFragment)
+                    }
+                } else {
+                    findNavController().apply {
+                        popBackStack()
+                        navigate(arguments?.getInt("nav")!!)
+                    }
                 }
             } else {
                 Toast.makeText(requireContext(), "이름을 입력해주세요.", Toast.LENGTH_SHORT).show()
@@ -113,6 +120,7 @@ class NameFragment : Fragment() {
         override fun onBufferReceived(buffer: ByteArray?) {}
 
         override fun onEndOfSpeech() {
+            isStart = !isStart
             Toast.makeText(requireContext(), "듣기 종료", Toast.LENGTH_SHORT).show()
         }
 
