@@ -23,16 +23,13 @@ import com.woojun.nado.database.Preferences.loadUserName
 import com.woojun.nado.databinding.FragmentSpellingBinding
 import com.woojun.nado.network.RetrofitAPI
 import com.woojun.nado.network.RetrofitClient
+import com.woojun.nado.util.Utils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.net.URLDecoder
-import java.nio.charset.StandardCharsets
 
 class SpellingFragment : Fragment() {
     private var _binding: FragmentSpellingBinding? = null
@@ -83,6 +80,7 @@ class SpellingFragment : Fragment() {
                 val resumeDao = AppDatabase.getDatabase(requireContext())?.resumeDao()
                 resumeDao?.insertResume(Resume(name = loadUserName(requireContext()) ?: "", content = binding.contentInput.text.toString()))
             }
+            findNavController().popBackStack()
         }
 
     }
@@ -95,6 +93,9 @@ class SpellingFragment : Fragment() {
     private fun checkSpelling(content: String) {
         val retrofitAPI = RetrofitClient.getInstance().create(RetrofitAPI::class.java)
         val call: Call<CheckspellingResult> = retrofitAPI.checkSpelling(Spelling(content))
+        val (loadingDialog, setDialogText) = Utils.createLoadingDialog(requireContext())
+        loadingDialog.show()
+        setDialogText("맞춤법 검사 중...")
 
         call.enqueue(object : Callback<CheckspellingResult> {
             override fun onResponse(
@@ -117,9 +118,11 @@ class SpellingFragment : Fragment() {
                         }
                     }
                 }
+                loadingDialog.dismiss()
             }
 
             override fun onFailure(call: Call<CheckspellingResult>, t: Throwable) {
+                loadingDialog.dismiss()
                 Toast.makeText(requireContext(), "네트워크 오류, 다시 시도해주세요.", Toast.LENGTH_SHORT).show()
             }
         })

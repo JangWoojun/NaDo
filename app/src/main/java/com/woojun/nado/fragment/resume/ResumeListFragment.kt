@@ -20,6 +20,7 @@ import com.woojun.nado.database.Preferences.loadUserName
 import com.woojun.nado.databinding.FragmentResumeListBinding
 import com.woojun.nado.network.RetrofitAPI
 import com.woojun.nado.network.RetrofitClient
+import com.woojun.nado.util.Utils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -151,6 +152,9 @@ class ResumeListFragment : Fragment() {
     private fun postPdf(pdf: Pdf) {
         val retrofitAPI = RetrofitClient.getInstance().create(RetrofitAPI::class.java)
         val call: Call<ResponseBody> = retrofitAPI.postPdf(pdf)
+        val (loadingDialog, setDialogText) = Utils.createLoadingDialog(requireContext())
+        loadingDialog.show()
+        setDialogText("PDF 생성 중...")
 
         call.enqueue(object : Callback<ResponseBody> {
             override fun onResponse(
@@ -160,9 +164,11 @@ class ResumeListFragment : Fragment() {
                 if (response.isSuccessful) {
                     savePdfToFile(response.body()!!)
                 }
+                loadingDialog.dismiss()
             }
 
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                loadingDialog.dismiss()
                 Toast.makeText(requireContext(), "네트워크 오류, 다시 시도해주세요.", Toast.LENGTH_SHORT).show()
             }
         })
