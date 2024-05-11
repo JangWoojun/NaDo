@@ -111,7 +111,7 @@ class SpellingFragment : Fragment() {
                             spannableString.setSpan(
                                 ForegroundColorSpan(Color.parseColor("#FF5656")),
                                 char.start,
-                                char.end+1,
+                                char.end - 1,
                                 SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE
                             )
                             this.text = spannableString
