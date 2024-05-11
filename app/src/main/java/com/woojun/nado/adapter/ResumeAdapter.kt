@@ -7,9 +7,9 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.woojun.nado.R
 import com.woojun.nado.data.Resume
-import com.woojun.nado.databinding.SupportItemBinding
+import com.woojun.nado.databinding.ResumeItemBinding
 
-class SupportAdapter(private val supportList: MutableList<Resume>): RecyclerView.Adapter<SupportAdapter.SupportViewHolder>() {
+class ResumeAdapter(private val resumeList: MutableList<Resume>): RecyclerView.Adapter<ResumeAdapter.SupportViewHolder>() {
     private var index: Int? = null
 
     fun getIndex(): Int? {
@@ -17,12 +17,12 @@ class SupportAdapter(private val supportList: MutableList<Resume>): RecyclerView
     }
 
     fun removeItem(index: Int) {
-        supportList.removeAt(index)
+        resumeList.removeAt(index)
         notifyItemRemoved(index)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SupportViewHolder {
-        val binding = SupportItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ResumeItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return SupportViewHolder(binding).also { handler ->
             binding.root.setOnClickListener {
                 binding.root.findNavController().navigate(
@@ -30,9 +30,9 @@ class SupportAdapter(private val supportList: MutableList<Resume>): RecyclerView
                     Bundle().apply {
                         this.putString(
                             "title",
-                            supportList[handler.adapterPosition].name
+                            resumeList[handler.adapterPosition].name
                         )
-                        this.putString("content", supportList[handler.adapterPosition].content)
+                        this.putString("content", resumeList[handler.adapterPosition].content)
                     }
                 )
             }
@@ -40,14 +40,14 @@ class SupportAdapter(private val supportList: MutableList<Resume>): RecyclerView
     }
 
     override fun getItemCount(): Int {
-        return supportList.size
+        return resumeList.size
     }
 
     override fun onBindViewHolder(holder: SupportViewHolder, position: Int) {
-        holder.bind(supportList[position])
+        holder.bind(resumeList[position])
     }
 
-    inner class SupportViewHolder(private val binding: SupportItemBinding):
+    inner class SupportViewHolder(private val binding: ResumeItemBinding):
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(support: Resume) {

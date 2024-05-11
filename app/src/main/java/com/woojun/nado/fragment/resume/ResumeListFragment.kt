@@ -13,7 +13,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.woojun.nado.R
-import com.woojun.nado.adapter.SupportAdapter
+import com.woojun.nado.adapter.ResumeAdapter
 import com.woojun.nado.data.Pdf
 import com.woojun.nado.database.AppDatabase
 import com.woojun.nado.database.Preferences.loadUserName
@@ -54,7 +54,7 @@ class ResumeListFragment : Fragment() {
         val isWrite = arguments?.getBoolean("isWrite") ?: true
         CoroutineScope(Dispatchers.IO).launch {
                 val resumeDao = AppDatabase.getDatabase(requireContext())?.resumeDao()
-                val adapter = SupportAdapter(resumeDao!!.getResumeList())
+                val adapter = ResumeAdapter(resumeDao!!.getResumeList())
 
                 withContext(Dispatchers.Main) {
 

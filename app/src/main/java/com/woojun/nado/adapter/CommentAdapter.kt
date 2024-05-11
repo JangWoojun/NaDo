@@ -1,19 +1,11 @@
 package com.woojun.nado.adapter
 
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.woojun.nado.R
-import com.woojun.nado.data.AiInterview
-import com.woojun.nado.data.BoardListItem
 import com.woojun.nado.data.GetCommentList
 import com.woojun.nado.data.GetCommentListItem
-import com.woojun.nado.data.Post
 import com.woojun.nado.databinding.CommentItemBinding
-import com.woojun.nado.databinding.CommunityItemBinding
-import com.woojun.nado.databinding.SupportItemBinding
 
 class CommentAdapter(private val commentList: GetCommentList): RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() {
 

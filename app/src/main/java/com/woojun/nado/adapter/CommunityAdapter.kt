@@ -6,11 +6,8 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.woojun.nado.R
-import com.woojun.nado.data.AiInterview
 import com.woojun.nado.data.BoardListItem
-import com.woojun.nado.data.Post
 import com.woojun.nado.databinding.CommunityItemBinding
-import com.woojun.nado.databinding.SupportItemBinding
 
 class CommunityAdapter(private val boardList: MutableList<BoardListItem>): RecyclerView.Adapter<CommunityAdapter.CommunityViewHolder>() {
 
