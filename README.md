@@ -19,12 +19,12 @@
 ### 스샷
 
 <div style="text-align: left;">    
-    <img src="https://github.com/user-attachments/assets/66d9cac0-ca68-485e-873d-1848af1e49d6"  width="200" height="400"/>
-    <img src="https://github.com/user-attachments/assets/91c27eac-d2d5-468e-a61c-b3b9b12520cb"  width="200" height="400"/>
-    <img src="https://github.com/user-attachments/assets/dc362803-c8b4-42f5-b428-067abc7ff4e5"  width="200" height="400"/>
-    <img src="https://github.com/user-attachments/assets/ac52aef5-e2f8-4a6d-a38a-ce78e463ec21"  width="200" height="400"/>
-    <img src="https://github.com/user-attachments/assets/aa0f78a1-15d6-4c45-80d6-7c2755569088"  width="200" height="400"/>
-    <img src="https://github.com/user-attachments/assets/9db3490c-81d8-4b86-9751-ec60cd74f64c"  width="200" height="400"/>
+    <img src="https://github.com/user-attachments/assets/66d9cac0-ca68-485e-873d-1848af1e49d6"  width="400" height="400"/>
+    <img src="https://github.com/user-attachments/assets/91c27eac-d2d5-468e-a61c-b3b9b12520cb"  width="400" height="400"/>
+    <img src="https://github.com/user-attachments/assets/dc362803-c8b4-42f5-b428-067abc7ff4e5"  width="400" height="400"/>
+    <img src="https://github.com/user-attachments/assets/ac52aef5-e2f8-4a6d-a38a-ce78e463ec21"  width="400" height="400"/>
+    <img src="https://github.com/user-attachments/assets/aa0f78a1-15d6-4c45-80d6-7c2755569088"  width="400" height="400"/>
+    <img src="https://github.com/user-attachments/assets/9db3490c-81d8-4b86-9751-ec60cd74f64c"  width="400" height="400"/>
 </div>
 
 ## 구현 기능
